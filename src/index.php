@@ -1,16 +1,14 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$name = $_GET['name'];
-
-if(isset($name)) {
-  echo "Saludos ".$name;
+if(isset($_GET['name'])) {
+  echo "<p>Saludos ".$_GET['name']."</p>";
 } else {
-  echo "Hola desconocido ¿Cómo estás?";
+  echo "<p>Hola desconocido ¿Cómo estás?</p>";
 }
 
-
-echo "--------";
+echo "<br />";
+echo "<p>--------</p>";
 
 echo phpinfo();
 ?>
