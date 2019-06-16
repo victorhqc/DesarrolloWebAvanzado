@@ -9,11 +9,11 @@ class User {
     $this->password = $password;
   }
 
-  get_username() {
+  public function get_username() {
     return $this->username;
   }
 
-  get_password() {
+  public function get_password() {
     return $this->password;
   }
 }

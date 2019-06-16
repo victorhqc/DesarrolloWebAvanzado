@@ -1,6 +1,6 @@
 <?php
 
-require_once('./modules/authorization/Authorization');
+require_once('../authorization/Authorization');
 
 try {
   $authorization = new Authorization();
@@ -14,6 +14,7 @@ try {
 
   $authorization->authorize($username, $password);
 
-} catch (e) {
-
+} catch (Exception $e) {
+  echo "<p>uh oh</p>";
+  echo "<p>$e</p>";
 }

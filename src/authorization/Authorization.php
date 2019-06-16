@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Replace this require for a DB implementation.
-require_once('TextFileAuthorization.php');
+require_once('TextFileAuthenticator.php');
 
 class Authorization {
   private $authenticator;
@@ -9,12 +9,20 @@ class Authorization {
   private $authorized_user = null;
 
   function __construct() {
+    session_start();
     $this->authenticator = new TextFileAuthentication();
   }
 
-
   public function is_authorized() {
     return $_SESSION[$this->authorized_key] && $_SESSION[$this->authorized_key];
+  }
+
+  public function get_authorized_user() {
+    if (!isset($_SESSION[$this->authorized_user])) {
+      throw new Exception('Unauthorized');
+    }
+
+    return $_SESSION[$this->authorized_user];
   }
 
   public function authorize($username, $password) {
@@ -29,7 +37,6 @@ class Authorization {
 
     $_SESSION[$this->authorized_key] = true;
     $_SESSION[$this->authorized_user] = $user;
-
   }
 
   public function remove_authorization() {

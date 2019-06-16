@@ -1,8 +1,8 @@
 <?php
 require_once('Authorization.php');
-require_once('../../users/User.php');
+require_once('./users/User.php');
 
-class TextFileAuthentication implements Authorize {
+class TextFileAuthentication {
   private $filename = "users.csv";
   private $users = array();
 
