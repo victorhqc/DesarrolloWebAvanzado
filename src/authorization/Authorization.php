@@ -1,7 +1,7 @@
 <?php
 
 // TODO: Replace this require for a DB implementation.
-require_once('TextFileAuthenticator.php');
+require_once(__DIR__.'/TextFileAuthenticator.php');
 
 class Authorization {
   private $authenticator;
@@ -14,7 +14,11 @@ class Authorization {
   }
 
   public function is_authorized() {
-    return $_SESSION[$this->authorized_key] && $_SESSION[$this->authorized_key];
+    if (!isset($_SESSION[$this->authorized_key])) {
+      return false;
+    }
+
+    return true;
   }
 
   public function get_authorized_user() {

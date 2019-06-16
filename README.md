@@ -12,6 +12,18 @@ Inicia XAMPP y consluta el [FAQ](http://localhost:8080) de forma local.
 
 - **Raíz de archivos:** /Users/`<User>`/.bitnami/stackman/machines/xampp/volumes/root
 
+### Apache
+
+Actualiza la configuración de apache cambiando el archivo `/opt/lampp/extra/httpd-xampp.conf` y
+añadir lo siguiente
+```
+<Directory "/opt/lamp/tarea">
+  Require all granted
+  Options Indexes FollowSymLinks
+</Directory>
+```
+
+Esto para habilitar el acceso a la tarea.
 
 ## Desarrollo
 
@@ -25,6 +37,15 @@ copy-files.sh USER
 
 Reemplaza `USER` con el nombre de usuario que tu computadora tenga, por ejemplo: `v.quiroz` de tal
 forma que el script sepa a dónde copiar los archivos.
+
+Después, es necesario crear el archivo CSV para manejar los usuarios. Simplemente ejecuta lo
+siguiente:
+
+```sh
+init-file.sh
+```
+
+**Cuidado:** Cada vez que se ejecute el comando, el archivo `users.csv` será reinicializado.
 
 ## Notas
 

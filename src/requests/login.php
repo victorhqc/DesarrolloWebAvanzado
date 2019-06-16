@@ -1,6 +1,6 @@
 <?php
 
-require_once('../authorization/Authorization');
+require_once(__DIR__.'/../authorization/Authorization.php');
 
 try {
   $authorization = new Authorization();

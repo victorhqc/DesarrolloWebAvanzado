@@ -1,6 +1,6 @@
 <?php
-require_once('Authorization.php');
-require_once('./users/User.php');
+require_once(__DIR__.'/Authorization.php');
+require_once(__DIR__.'/../users/User.php');
 
 class TextFileAuthentication {
   private $filename = "users.csv";
@@ -39,7 +39,7 @@ class TextFileAuthentication {
   }
 
   private function open_authorization_file($mode) {
-    $file = fopen($this->filename, $mode);
+    $file = fopen(__DIR__."../../".$this->filename, $mode);
     if ($file == false) {
       throw new Exception("Can't open the authorization file.");
     }
@@ -63,7 +63,7 @@ class TextFileAuthentication {
     $file = $this->open_authorization_file('r');
 
     $users = array();
-    while(!eof($file)) {
+    while(!feof($file)) {
       $raw_user = fgetcsv($file, 128, ",");
 
       $user = new User($raw_user[0], $raw_user[1]);
