@@ -3,6 +3,7 @@
 namespace App\Authorization;
 
 use App\Authorization\TextFileAuthenticator;
+use App\Authorization\Authorize;
 
 class Authorization {
   private $authenticator;
@@ -12,6 +13,10 @@ class Authorization {
   function __construct() {
     session_start();
     $this->authenticator = new TextFileAuthenticator();
+
+    if (!$this->authenticator instanceof Authorize) {
+      throw Exception("Invalid authenticator");
+    }
   }
 
   public function is_authorized() {
