@@ -1,5 +1,6 @@
 # DesarrolloWebAvanzado
-Tarea para la materia de "Computación en el servidor web" en la "Maestría de Ingeniería de Software"
+Tarea para la materia de "Computación en el servidor web" en la "Maestría de Ingeniería de
+Software".
 
 ## Requerimientos
 
@@ -7,9 +8,9 @@ Tarea para la materia de "Computación en el servidor web" en la "Maestría de I
 
 ## XAMPP
 
-Inicia Xampp y consluta el [FAQ](http://localhost:8080) de forma local.
+Inicia XAMPP y consluta el [FAQ](http://localhost:8080) de forma local.
 
-- **Raíz de archivos:** /Users/<User>/.bitnami/stackman/machines/xampp/volumes/root
+- **Raíz de archivos:** /Users/`<User>`/.bitnami/stackman/machines/xampp/volumes/root
 
 
 ## Desarrollo
