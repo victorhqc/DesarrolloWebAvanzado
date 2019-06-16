@@ -1,7 +1,8 @@
 <?php
 
-// TODO: Replace this require for a DB implementation.
-require_once(__DIR__.'/TextFileAuthenticator.php');
+namespace App\Authorization;
+
+use App\Authorization\TextFileAuthenticator;
 
 class Authorization {
   private $authenticator;
@@ -10,7 +11,7 @@ class Authorization {
 
   function __construct() {
     session_start();
-    $this->authenticator = new TextFileAuthentication();
+    $this->authenticator = new TextFileAuthenticator();
   }
 
   public function is_authorized() {
@@ -26,7 +27,11 @@ class Authorization {
       throw new Exception('Unauthorized');
     }
 
-    return $_SESSION[$this->authorized_user];
+    return $this->authenticator->get_user($_SESSION[$this->authorized_user]);
+  }
+
+  public function destroy_session() {
+    session_destroy();
   }
 
   public function authorize($username, $password) {
@@ -40,7 +45,7 @@ class Authorization {
     }
 
     $_SESSION[$this->authorized_key] = true;
-    $_SESSION[$this->authorized_user] = $user;
+    $_SESSION[$this->authorized_user] = $user->get_username();
   }
 
   public function remove_authorization() {

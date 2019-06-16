@@ -1,8 +1,10 @@
 <?php
-require_once(__DIR__.'/Authorization.php');
-require_once(__DIR__.'/../users/User.php');
+namespace App\Authorization;
 
-class TextFileAuthentication {
+use App\Authorization\Authorize;
+use App\Users\User;
+
+class TextFileAuthenticator implements Authorize {
   private $filename = "users.csv";
   private $users = array();
 
@@ -36,6 +38,10 @@ class TextFileAuthentication {
     }
 
     return $user;
+  }
+
+  public function get_user($username) {
+    return $this->get_user_from_file($username);
   }
 
   private function open_authorization_file($mode) {

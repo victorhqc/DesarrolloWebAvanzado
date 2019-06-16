@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Users;
+
 class User {
   private $username;
   private $password;

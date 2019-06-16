@@ -1,5 +1,8 @@
 <?php
-require_once(__DIR__.'/authorization/Authorization.php');
+
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php');
+
+use App\Authorization\Authorization;
 
 try {
   $authorization = new Authorization();
