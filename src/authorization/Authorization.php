@@ -30,10 +30,6 @@ class Authorization {
     return $this->authenticator->get_user($_SESSION[$this->authorized_user]);
   }
 
-  public function destroy_session() {
-    session_destroy();
-  }
-
   public function authorize($username, $password) {
     if ($this->is_authorized()) {
       return true;
@@ -49,6 +45,6 @@ class Authorization {
   }
 
   public function remove_authorization() {
-
+    session_destroy();
   }
 }
