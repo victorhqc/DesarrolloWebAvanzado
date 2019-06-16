@@ -25,3 +25,10 @@ copy-files.sh USER
 
 Reemplaza `USER` con el nombre de usuario que tu computadora tenga, por ejemplo: `v.quiroz` de tal
 forma que el script sepa a dónde copiar los archivos.
+
+## Notas
+
+[Como es sabido](https://www.php.net/manual/en/faq.passwords.php#faq.passwords.fasthash), utilizar
+SHA1 o md5 no es recomendado para contraseñas, ya que utilizar fuerza bruta para obtener la
+contraseña es trivial hoy en día. Sin embargo, éste algoritmo es usado para simplificar el
+ejercicio.
