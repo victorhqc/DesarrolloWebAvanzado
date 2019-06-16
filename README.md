@@ -5,6 +5,7 @@ Software".
 ## Requerimientos
 
 - Instalar [XAMPP](https://www.apachefriends.org/index.html)
+- Git
 
 ## XAMPP
 
@@ -12,10 +13,16 @@ Inicia XAMPP y consluta el [FAQ](http://localhost:8080) de forma local.
 
 - **Raíz de archivos:** /Users/`<User>`/.bitnami/stackman/machines/xampp/volumes/root
 
+## Desarrollo
+
+Clona el repositorio localmente antes de empezar.
+
 ### Apache
 
-Actualiza la configuración de apache cambiando el archivo `/opt/lampp/extra/httpd-xampp.conf` y
+XAMPP utiliza Apache por defecto, para poder desarrollar el proyecto, se necesitan realizar algunos
+cambios a su configuración. Es necesario editar el archivo `/opt/lampp/extra/httpd-xampp.conf` y
 añadir lo siguiente
+
 ```
 <Directory "/opt/lamp/tarea">
   Require all granted
@@ -25,11 +32,20 @@ añadir lo siguiente
 
 Esto para habilitar el acceso a la tarea.
 
-## Desarrollo
+### Archivos
 
-Para poder visualizar el proyecto utilizando XAMPP, primero es necesario tener corriendo el
-servicio de XAMPP y tener montado el sistema de archivos de la máquina virtual que XAMPP provee.
-Después, ejecutar el siguiente comando:
+Al estar trabajando con los archivos, es necesario entender que XAMPP crea una máquina virtual, la
+cual tiene su propio sistema de archivos, independiente del sistema operativo que se esté
+trabajando.
+
+Al editar un archivo en el sistema operativo, es necesario reflejar esos cambios en la máquina
+virtual, que para términos prácticos, es el servidor. Se han preparado dos _"scripts"_ que
+facilitan un poco actualizar y crear los archivos necesarios.
+
+**Copiar archivos al servidor:**
+
+El siguiente script copiará el contenido de `src/` y lo copiará a la máquina virtual al directorio
+de `tarea/`.
 
 ```sh
 copy-files.sh USER
@@ -40,6 +56,10 @@ forma que el script sepa a dónde copiar los archivos.
 
 Después, es necesario crear el archivo CSV para manejar los usuarios. Simplemente ejecuta lo
 siguiente:
+
+**Archivo CSV de autorización:**
+
+El siguiente script creará el archivo usado para realizar la autorización de usuarios.
 
 ```sh
 init-file.sh
