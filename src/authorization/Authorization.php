@@ -15,7 +15,7 @@ class Authorization {
     $this->authenticator = new TextFileAuthenticator();
 
     if (!$this->authenticator instanceof Authorize) {
-      throw Exception("Invalid authenticator");
+      throw \Exception("Invalid authenticator");
     }
   }
 
@@ -29,7 +29,7 @@ class Authorization {
 
   public function get_authorized_user() {
     if (!isset($_SESSION[$this->authorized_user])) {
-      throw new Exception('Unauthorized');
+      throw new \Exception('Unauthorized');
     }
 
     return $this->authenticator->get_user($_SESSION[$this->authorized_user]);
@@ -42,7 +42,7 @@ class Authorization {
 
     $user = $this->authenticator->verify_user($username, $password);
     if ($user == false) {
-      throw new Exception("Invalid user or password");
+      throw new \Exception("Invalid user or password");
     }
 
     $_SESSION[$this->authorized_key] = true;

@@ -10,7 +10,7 @@ class TextFileAuthenticator implements Authorize {
 
   public function register_user($username, $password) {
     if ($this->is_user_registered($username)) {
-      throw new Exception("The user is already registered.");
+      throw new \Exception("The user is already registered.");
     }
 
     $this->add_user_to_file($username, $password);
