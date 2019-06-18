@@ -38,9 +38,8 @@ class SignupController {
       $password2 = $_POST['password2'];
 
       $this->authorization->register_user($username, $password, $password2);
-      // $this->authorization->authorize($username, $password);
-      //
-      // Route::redirect_to("index.php");
+
+      Route::redirect_to("login.php");
 
     } catch (Exception $e) {
       Route::redirect_with_data("signup.php", array(

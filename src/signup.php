@@ -49,7 +49,12 @@ $errors = Route::get_data_from_redirect();
       border-bottom-left-radius: 0;
     }
 
-    .form-signin input[type="password"] {
+    .form-signin input[name="password"] {
+      border-radius: 0;
+      margin-bottom: -1px;
+    }
+
+    .form-signin input[name="password2"] {
       margin-bottom: 10px;
       border-top-right-radius: 0;
       border-top-left-radius: 0;
