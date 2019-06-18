@@ -19,7 +19,7 @@ class IndexController {
         Route::redirect_to("login.php");
       }
 
-      Route::redirect_to("products.php");
+      Route::redirect_to("welcome.php");
 
     } catch (\Exception $e) {
       Route::redirect_to("login.php");
