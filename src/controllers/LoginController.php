@@ -25,8 +25,6 @@ class LoginController {
 
   private function login() {
     try {
-      $this->authorization = new Authorization();
-
       if (!isset($_POST['username']) || !isset($_POST['password'])) {
         throw new Exception("Porfavor, ingresa usuario y contraseña.");
       }
