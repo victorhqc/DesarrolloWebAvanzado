@@ -19,7 +19,11 @@ class TextFileAuthenticator implements Authorize {
       throw new Exception("El usuario ya está registrado.");
     }
 
-    $this->add_user_to_file($username, $password);
+    $file = $this->open_authorization_file('a');
+    $encrypted_password = $this->encrypt_password($password);
+
+    fputcsv($file, array($username, $encrypted_password));
+    fclose($file);
   }
 
   public function is_user_registered(string $username) {
@@ -90,14 +94,6 @@ class TextFileAuthenticator implements Authorize {
     fclose($file);
 
     return $users;
-  }
-
-  private function add_user_to_file(string $username, string $password) {
-    $file = $this->open_authorization_file('a');
-    $encrypted_password = $this->encrypt_password($password);
-
-    fputcsv($file, "$username,$encrypted_password");
-    fclose($file);
   }
 
   private function encrypt_password(string $password) {
