@@ -8,4 +8,4 @@ use App\Utils\Route;
 $authorization = new Authorization();
 $authorization->remove_authorization();
 
-Route::redirect_to_relative("login.php");
+Route::redirect_to("login.php");

@@ -14,6 +14,7 @@ spl_autoload_register(function (String $class) {
   include_module($class, $source_path, 'users', 'App\Users');
   include_module($class, $source_path, 'environment', 'App\Environment');
   include_module($class, $source_path, 'utils', 'App\Utils');
+  include_module($class, $source_path, 'controllers', 'App\Controllers');
 });
 
 function include_module(String $class, $source_path, $module_name, $name_space) {

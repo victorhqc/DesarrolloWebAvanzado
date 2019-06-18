@@ -4,8 +4,12 @@ require_once(__DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php');
 require_once("./templates/dependencies.php");
 
 use App\Utils\Route;
+use App\Controllers\LoginController;
 
-$form_target = Route::get_route("controllers/login.php");
+$controller = new LoginController();
+$controller->handle_login();
+
+$form_target = Route::get_route("login.php");
 $signup = Route::get_route("signup.php");
 
 // Posibles errores si login falla.
@@ -60,7 +64,7 @@ $errors = Route::get_data_from_redirect();
         foreach ($errors as $key => $value) {
           echo <<<EOT
     <div class="alert alert-danger" role="alert">
-      "$value"
+      $value
     </div>
 EOT;
         }
