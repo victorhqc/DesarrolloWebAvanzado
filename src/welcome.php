@@ -28,7 +28,6 @@
           <ul>
             <li>Inicio de sesión.</li>
             <li>Registro de usuario.</li>
-            <li>Inicio de sesión.</li>
             <li>Manejo de sesión utilizando un archivo de texto.</li>
             <li>Modelo Vista Controlador.</li>
           </ul>
