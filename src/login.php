@@ -5,9 +5,10 @@ require_once("./templates/dependencies.php");
 
 use App\Utils\Route;
 
-$form_target = Route::get_route("requests/login.php");
+$form_target = Route::get_route("controllers/login.php");
 $signup = Route::get_route("signup.php");
-// Possible errors if login failed.
+
+// Posibles errores si login falla.
 $errors = Route::get_data_from_redirect();
 
 ?>
