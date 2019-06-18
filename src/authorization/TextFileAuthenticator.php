@@ -11,7 +11,6 @@ use App\Users\User;
  * internamente en `App\Authorization\Authorization`.
  */
 class TextFileAuthenticator implements Authorize {
-  private $filename = "users.csv";
   private $users = array();
 
   public function register_user(string $username, string $password) {
@@ -56,7 +55,7 @@ class TextFileAuthenticator implements Authorize {
   }
 
   private function open_authorization_file(string $mode) {
-    $file = fopen(__DIR__."../../".$this->filename, $mode);
+    $file = fopen(getenv('AUTHORIZATION_FILE'), $mode);
     if ($file == false) {
       throw new Exception("Can't open the authorization file.");
     }

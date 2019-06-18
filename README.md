@@ -59,13 +59,36 @@ siguiente:
 
 **Archivo CSV de autorización:**
 
-El siguiente script creará el archivo usado para realizar la autorización de usuarios.
+Para guardar las contraseñas, es necesario crear un archivo con extensión `.csv` en blanco
+directamente en el servidor donde se está ejecutando PHP. Se podría realizar un método menos
+arcaico para crear éste archivo, pero para no complicar demasiado la tares se debe de realizar
+manualmente para desarrollar y para ponerse en producción.
 
 ```sh
-init-file.sh
+# Crear archivo de texto
+touch users.csv
+# Cambia los permisos para que PHP pueda escribir en él.
+chmod 775 users.csv
+# Cambia el propietario para que PHP pueda modificarlo.
+chown daemon:daemon users.csv
+# Copia la ruta donde se encuentra el archivo, necesario para incluirlo en el archivo de variables
+# de entorno.
+pwd
 ```
 
-**Cuidado:** Cada vez que se ejecute el comando, el archivo `users.csv` será reinicializado.
+Asegúrate que el archivo se encuentre fuera de la carpeta donde vive directamente el código de
+PHP, ya que al "deployar" nuevo código o al reemplazar los archivos en el desarrollo, el archivo
+será re-escrito.
+
+Además, es necesario que se incluya la ruta y el nombre del archivo de autorización en el archivo
+de variables de entorno `.env` como se indica a continuación.
+
+```
+AUTHORIZATION_FILE=path/to/file/users.csv
+```
+
+Tanto la ruta como el nombre del archivo no importan. Sólo ten en cuenta que PHP debe poder acceder
+y modificar el archivo, además de ser un archivo `.csv`
 
 ## Notas
 
