@@ -1,6 +1,7 @@
 <?php
 namespace App\Authorization;
 
+use \Exception;
 use App\Authorization\Authorize;
 use App\Users\User;
 
@@ -15,7 +16,7 @@ class TextFileAuthenticator implements Authorize {
 
   public function register_user(string $username, string $password) {
     if ($this->is_user_registered($username)) {
-      throw new \Exception("The user is already registered.");
+      throw new Exception("El usuario ya está registrado.");
     }
 
     $this->add_user_to_file($username, $password);
@@ -23,11 +24,12 @@ class TextFileAuthenticator implements Authorize {
 
   public function is_user_registered(string $username) {
     $user = $this->get_user_from_file($username);
+
     if ($user == false) {
-      return true;
+      return false;
     }
 
-    return false;
+    return true;
   }
 
   public function verify_user(string $username, string $password) {
@@ -76,6 +78,10 @@ class TextFileAuthenticator implements Authorize {
     $users = array();
     while(!feof($file)) {
       $raw_user = fgetcsv($file, 128, ",");
+
+      if (!$raw_user || sizeof($raw_user) <= 0) {
+        continue;
+      }
 
       $user = new User($raw_user[0], $raw_user[1]);
       array_push($users, $user);
