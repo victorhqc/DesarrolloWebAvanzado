@@ -5,13 +5,16 @@ namespace App\Authorization;
 use App\Authorization\TextFileAuthenticator;
 use App\Authorization\Authorize;
 
+/**
+ * Clase de Autenticación genérica. Utilizar esta clase cuando se quiera realizar cualquier
+ * operación referente a la autenticación.
+ */
 class Authorization {
   private $authenticator;
   private $authorized_key = "__loggedin__";
   private $authorized_user = null;
 
   function __construct() {
-    session_start();
     $this->authenticator = new TextFileAuthenticator();
 
     if (!$this->authenticator instanceof Authorize) {
@@ -35,7 +38,7 @@ class Authorization {
     return $this->authenticator->get_user($_SESSION[$this->authorized_user]);
   }
 
-  public function authorize($username, $password) {
+  public function authorize(string $username, string $password) {
     if ($this->is_authorized()) {
       return true;
     }

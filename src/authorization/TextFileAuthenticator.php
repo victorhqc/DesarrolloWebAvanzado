@@ -4,11 +4,16 @@ namespace App\Authorization;
 use App\Authorization\Authorize;
 use App\Users\User;
 
+/**
+ * No utilizar esta clase directamente. Esta clase implementa la autorización por medio de un
+ * archivo de texto, y no maneja la sesión en PHP, es simplemente una interfaz que se usará
+ * internamente en `App\Authorization\Authorization`.
+ */
 class TextFileAuthenticator implements Authorize {
   private $filename = "users.csv";
   private $users = array();
 
-  public function register_user($username, $password) {
+  public function register_user(string $username, string $password) {
     if ($this->is_user_registered($username)) {
       throw new \Exception("The user is already registered.");
     }
@@ -16,7 +21,7 @@ class TextFileAuthenticator implements Authorize {
     $this->add_user_to_file($username, $password);
   }
 
-  public function is_user_registered($username) {
+  public function is_user_registered(string $username) {
     $user = $this->get_user_from_file($username);
     if ($user == false) {
       return true;
@@ -25,7 +30,7 @@ class TextFileAuthenticator implements Authorize {
     return false;
   }
 
-  public function verify_user($username, $password) {
+  public function verify_user(string $username, string $password) {
     $user = $this->get_user_from_file($username);
     if ($user == false) {
       return false;
@@ -40,11 +45,11 @@ class TextFileAuthenticator implements Authorize {
     return $user;
   }
 
-  public function get_user($username) {
+  public function get_user(string $username) {
     return $this->get_user_from_file($username);
   }
 
-  private function open_authorization_file($mode) {
+  private function open_authorization_file(string $mode) {
     $file = fopen(__DIR__."../../".$this->filename, $mode);
     if ($file == false) {
       throw new Exception("Can't open the authorization file.");
@@ -53,7 +58,7 @@ class TextFileAuthenticator implements Authorize {
     return $file;
   }
 
-  private function get_user_from_file($username) {
+  private function get_user_from_file(string $username) {
     $users = $this->get_users_from_file();
 
     foreach($users as $user) {
@@ -81,7 +86,7 @@ class TextFileAuthenticator implements Authorize {
     return $users;
   }
 
-  private function add_user_to_file($username, $password) {
+  private function add_user_to_file(string $username, string $password) {
     $file = $this->open_authorization_file('a');
     $encrypted_password = $this->encrypt_password($password);
 
@@ -89,7 +94,7 @@ class TextFileAuthenticator implements Authorize {
     fclose($file);
   }
 
-  private function encrypt_password($password) {
+  private function encrypt_password(string $password) {
     // SHA1 is unsafe for production.
     $UNSAFE_encrypted_password = sha1($password);
 

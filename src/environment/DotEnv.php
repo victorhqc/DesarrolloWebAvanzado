@@ -2,6 +2,26 @@
 
 namespace App\Environment;
 
+/**
+ * Lee un archivo '.env' en la ruta especificada. Dicho archivo tendrá variables de ambiente. Por
+ * ejemplo, teniendo un archivo '.env' conteniendo lo siguiente:
+ *
+ * ```
+ * URL=http://localhost:8080
+ * ```
+ *
+ * Se construye la clase
+ *
+ * ```php
+ * use App\Environment\DotEnv;
+ *
+ * new DotEnv(__DIR__);
+ * ```
+ *
+ * Al crear la clase, ésta lee y parsea el archivo, añadiendo "URL" a la configuración de ambiente,
+ * en PHP al momento de ejecutarse la petición. Esto facilita que se puedan tener diferentes
+ * configuraciones en desarrollo y producción.
+ */
 class DotEnv {
   private $filename = '.env';
   private $vars = array();
