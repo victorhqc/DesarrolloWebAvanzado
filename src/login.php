@@ -16,10 +16,6 @@ $errors = Route::get_data_from_redirect();
   <title>Catálogo - Login</title>
   <?php echo dependencies(); ?>
   <style type="text/css">
-    html, body {
-      height: 100%;
-    }
-
     body {
       display: flex;
       align-items: center;
