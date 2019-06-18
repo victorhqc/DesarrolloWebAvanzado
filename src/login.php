@@ -5,7 +5,10 @@ require_once("./templates/dependencies.php");
 
 use App\Utils\Route;
 
-$form_target = Route::get_relative_route("requests/login.php");
+$form_target = Route::get_route("requests/login.php");
+$signup = Route::get_route("signup.php");
+// Possible errors if login failed.
+$errors = Route::get_data_from_redirect();
 
 ?>
 <!DOCTYPE html>
@@ -55,6 +58,17 @@ $form_target = Route::get_relative_route("requests/login.php");
 <body class="text-center">
   <form class="form-signin" action="<?php echo $form_target; ?>" method="post">
     <h1 class="h3 mb-3 font-weight-normal">Porfavor inicia sesión</h1>
+    <?php
+      if (sizeof($errors) > 0) {
+        foreach ($errors as $key => $value) {
+          echo <<<EOT
+    <div class="alert alert-danger" role="alert">
+      "$value"
+    </div>
+EOT;
+        }
+      }
+    ?>
     <label class="sr-only" for="inputEmail">Correo electrónico</label>
     <input
       id="inputEmail"
@@ -78,7 +92,7 @@ $form_target = Route::get_relative_route("requests/login.php");
       Iniciar sesión
     </button>
     <p class="mt-5 mb-3">
-      <a href="/signup.php">Registrarse</a>
+      <a href="<?php echo $signup; ?>">Registrarse</a>
     </p>
   </form>
 </body>

@@ -3,6 +3,7 @@
 require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'bootstrap.php');
 
 use App\Authorization\Authorization;
+use App\Utils\Route;
 
 try {
   $authorization = new Authorization();
@@ -15,8 +16,10 @@ try {
   $password = $_POST['password'];
 
   $authorization->authorize($username, $password);
+  Route::redirect_to("index.php");
 
 } catch (Exception $e) {
-  echo "<p>uh oh</p>";
-  echo "<p>$e</p>";
+  Route::redirect_with_data("login.php", array(
+    'error' => $e->getMessage()
+  ));
 }

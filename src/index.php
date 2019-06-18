@@ -10,11 +10,11 @@ try {
   $user = $authorization->get_authorized_user();
 
   if (!$user) {
-    Route::redirect_to_relative("login.php");
+    Route::redirect_to("login.php");
   }
 
-  Route::redirect_to_relative("products.php");
+  Route::redirect_to("products.php");
 
 } catch (\Exception $e) {
-  Route::redirect_to_relative("login.php");
+  Route::redirect_to("login.php");
 }
