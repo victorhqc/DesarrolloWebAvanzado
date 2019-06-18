@@ -2,6 +2,7 @@
 
 namespace App\Authorization;
 
+use \Exception;
 use App\Authorization\TextFileAuthenticator;
 use App\Authorization\Authorize;
 
@@ -18,7 +19,7 @@ class Authorization {
     $this->authenticator = new TextFileAuthenticator();
 
     if (!$this->authenticator instanceof Authorize) {
-      throw \Exception("Invalid authenticator");
+      throw new Exception("Invalid authenticator");
     }
   }
 
@@ -32,7 +33,7 @@ class Authorization {
 
   public function get_authorized_user() {
     if (!isset($_SESSION[$this->authorized_user])) {
-      throw new \Exception('Unauthorized');
+      throw new Exception('Unauthorized');
     }
 
     return $this->authenticator->get_user($_SESSION[$this->authorized_user]);
@@ -45,7 +46,7 @@ class Authorization {
 
     $user = $this->authenticator->verify_user($username, $password);
     if ($user == false) {
-      throw new \Exception("Invalid user or password");
+      throw new Exception("Usuario o contraseña inválidos.");
     }
 
     $_SESSION[$this->authorized_key] = true;
@@ -54,5 +55,14 @@ class Authorization {
 
   public function remove_authorization() {
     session_destroy();
+  }
+
+
+  public function register_user(string $username, string $password, string $password2) {
+    if ($password !== $password2) {
+      throw new Exception("Las contraseñas no coinciden.");
+    }
+
+    return $this->authenticator->register_user($username, $password);
   }
 }
