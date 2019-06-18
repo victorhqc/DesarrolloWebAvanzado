@@ -16,7 +16,9 @@
     <?php echo navigation(); ?>
     <div class="container mt-4">
       <div class="jumbotron">
-        <h1 class="display-4">Bienvenido al catálogo genérico!</h1>
+        <h1 class="display-4">
+          Bienvenido al catálogo genérico!
+        </h1>
         <p class="lead">
           Hasta aquí la primer entrega de la tarea de Computación en el Servidor Web
         </p>
@@ -28,7 +30,7 @@
             <li>Registro de usuario.</li>
             <li>Inicio de sesión.</li>
             <li>Manejo de sesión utilizando un archivo de texto.</li>
-            <li>Modelo Vista Controlador</li>
+            <li>Modelo Vista Controlador.</li>
           </ul>
         </p>
         <div class="mt-5">
