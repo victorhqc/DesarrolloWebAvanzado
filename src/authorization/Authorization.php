@@ -33,7 +33,7 @@ class Authorization {
 
   public function get_authorized_user() {
     if (!isset($_SESSION[$this->authorized_user])) {
-      throw new Exception('Unauthorized');
+      throw new Exception("Unauthorized");
     }
 
     return $this->authenticator->get_user($_SESSION[$this->authorized_user]);

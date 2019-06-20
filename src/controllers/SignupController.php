@@ -26,16 +26,16 @@ class SignupController {
   private function signup() {
     try {
       if (
-        !isset($_POST['username'])
-        || !isset($_POST['password'])
-        || !isset($_POST['password2'])
+        !isset($_POST["username"])
+        || !isset($_POST["password"])
+        || !isset($_POST["password2"])
       ) {
         throw new Exception("Porfavor, ingresa usuario y contraseña.");
       }
 
-      $username = $_POST['username'];
-      $password = $_POST['password'];
-      $password2 = $_POST['password2'];
+      $username = $_POST["username"];
+      $password = $_POST["password"];
+      $password2 = $_POST["password2"];
 
       $this->authorization->register_user($username, $password, $password2);
 
@@ -43,7 +43,7 @@ class SignupController {
 
     } catch (Exception $e) {
       Route::redirect_with_data("signup.php", array(
-        'error' => $e->getMessage()
+        "error" => $e->getMessage()
       ));
     }
   }

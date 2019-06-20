@@ -3,8 +3,8 @@
 namespace App\Environment;
 
 /**
- * Lee un archivo '.env' en la ruta especificada. Dicho archivo tendrá variables de ambiente. Por
- * ejemplo, teniendo un archivo '.env' conteniendo lo siguiente:
+ * Lee un archivo ".env" en la ruta especificada. Dicho archivo tendrá variables de ambiente. Por
+ * ejemplo, teniendo un archivo ".env" conteniendo lo siguiente:
  *
  * ```
  * URL=http://localhost:8080
@@ -23,7 +23,7 @@ namespace App\Environment;
  * configuraciones en desarrollo y producción.
  */
 class DotEnv {
-  private $filename = '.env';
+  private $filename = ".env";
   private $vars = array();
 
   function __construct($path) {
@@ -32,7 +32,7 @@ class DotEnv {
   }
 
   private function parse_file($path) {
-    $file = fopen($path . DIRECTORY_SEPARATOR . $this->filename, 'r');
+    $file = fopen($path . DIRECTORY_SEPARATOR . $this->filename, "r");
 
     if (!$file) {
       return;

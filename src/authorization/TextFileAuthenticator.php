@@ -18,7 +18,7 @@ class TextFileAuthenticator implements Authorize {
       throw new Exception("El usuario ya está registrado.");
     }
 
-    $file = $this->open_authorization_file('a');
+    $file = $this->open_authorization_file("a");
     $encrypted_password = $this->encrypt_password($password);
 
     fputcsv($file, array($username, $encrypted_password));
@@ -57,9 +57,9 @@ class TextFileAuthenticator implements Authorize {
   }
 
   private function open_authorization_file(string $mode) {
-    $file = fopen(getenv('AUTHORIZATION_FILE'), $mode);
+    $file = fopen(getenv("AUTHORIZATION_FILE"), $mode);
     if ($file == false) {
-      throw new Exception("Can't open the authorization file.");
+      throw new Exception("Can"t open the authorization file.");
     }
 
     return $file;
@@ -78,7 +78,7 @@ class TextFileAuthenticator implements Authorize {
   }
 
   private function get_users_from_file() {
-    $file = $this->open_authorization_file('r');
+    $file = $this->open_authorization_file("r");
 
     $users = array();
     while(!feof($file)) {

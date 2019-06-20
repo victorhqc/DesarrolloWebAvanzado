@@ -8,7 +8,7 @@ namespace App\Utils;
  * diferencia en configuración y mantener las rutas de una forma estandarizada.
  */
 class Route {
-  private static $session_key = '__redirection_data__';
+  private static $session_key = "__redirection_data__";
 
   public static function redirect_to(string $relative_path) {
     header("Location: ".self::get_route($relative_path));
@@ -16,7 +16,7 @@ class Route {
   }
 
   public static function get_route(string $relative_path) {
-    return getenv('URL').$relative_path;
+    return getenv("URL").$relative_path;
   }
 
   /**

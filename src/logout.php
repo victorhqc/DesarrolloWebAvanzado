@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php');
+require_once(__DIR__ . DIRECTORY_SEPARATOR . "bootstrap.php");
 
 use App\Authorization\Authorization;
 use App\Utils\Route;

@@ -1,6 +1,6 @@
 <?php
 
-  require_once(__DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php');
+  require_once(__DIR__ . DIRECTORY_SEPARATOR . "bootstrap.php");
   require_once("./templates/dependencies.php");
   require_once("./templates/navigation.php");
 

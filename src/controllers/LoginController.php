@@ -25,19 +25,19 @@ class LoginController {
 
   private function login() {
     try {
-      if (!isset($_POST['username']) || !isset($_POST['password'])) {
+      if (!isset($_POST["username"]) || !isset($_POST["password"])) {
         throw new Exception("Porfavor, ingresa usuario y contraseña.");
       }
 
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+      $username = $_POST["username"];
+      $password = $_POST["password"];
 
       $this->authorization->authorize($username, $password);
       Route::redirect_to("index.php");
 
     } catch (Exception $e) {
       Route::redirect_with_data("login.php", array(
-        'error' => $e->getMessage()
+        "error" => $e->getMessage()
       ));
     }
   }
