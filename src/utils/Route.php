@@ -15,6 +15,16 @@ class Route {
     exit();
   }
 
+  public static function get_route(string $relative_path) {
+    return getenv('URL').$relative_path;
+  }
+
+  /**
+   * Algunas veces es necesario hacer una redirección y al momento de llegar a la página redirigida
+   * tener cierta información. Este método guarda la información en session para leerla después
+   * de ser redirigido. Esto no es muy eficiente, pero por cuestión de simplicidad en el código es
+   * suficiente.
+   */
   public static function redirect_with_data(string $relative_path, array $data) {
     $_SESSION[self::$session_key] = array();
     foreach ($data as $key => $value) {
@@ -33,9 +43,5 @@ class Route {
     unset($_SESSION[self::$session_key]);
 
     return $data;
-  }
-
-  public static function get_route(string $relative_path) {
-    return getenv('URL').$relative_path;
   }
 }
