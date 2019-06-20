@@ -7,7 +7,7 @@ use App\Users\User;
 
 /**
  * No utilizar esta clase directamente. Esta clase implementa la autorización por medio de un
- * archivo de texto, y no maneja la sesión en PHP, es simplemente una interfaz que se usará
+ * archivo de texto y no maneja la sesión en PHP. Es simplemente una interfaz que se usa
  * internamente en `App\Authorization\Authorization`.
  */
 class TextFileAuthenticator implements Authorize {
@@ -23,6 +23,8 @@ class TextFileAuthenticator implements Authorize {
 
     fputcsv($file, array($username, $encrypted_password));
     fclose($file);
+
+    return new User($username, $encrypted_password);
   }
 
   public function is_user_registered(string $username) {
