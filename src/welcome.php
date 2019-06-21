@@ -30,6 +30,7 @@
             <li>Registro de usuario.</li>
             <li>Manejo de sesión utilizando un archivo de texto.</li>
             <li>Modelo Vista Controlador.</li>
+            <li>Configuraciones de ambiente leyendo un archivo de texto.</li>
           </ul>
         </p>
         <div class="mt-5">
