@@ -14,7 +14,7 @@
     <?php echo dependencies(); ?>
   </head>
   <body>
-    <?php echo navigation(); ?>
+    <?php echo navigation("products"); ?>
     <div class="container mt-4">
       <div class="jumbotron">
         <h1 class="display-4">
@@ -22,7 +22,13 @@
         </h1>
 
         <p>
-          <a class="btn btn-warning addProduct" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <a
+            class="btn btn-warning addProduct"
+            data-toggle="collapse"
+            href="#collapseExample"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample">
             Registrar
           </a>
         </p>
@@ -36,7 +42,6 @@
             </form>
           </div>
         </div>
-
         <hr class="my-4">
         <p>
           <?php
@@ -44,7 +49,7 @@
             ?>
             Productos:
             <ul>
-              <?php 
+              <?php
                 foreach ($_SESSION['products'] as $key => $value):
                   if(isset($value['name']) && isset($value['description'])):
                     echo "<li>";
@@ -52,17 +57,16 @@
                       echo "Nombre: ".$value['name']."<br>";
                       echo "Descripción: ".$value['description']."<br>";
                     echo "<a href='$delete?key=$key' class='btn btn-danger'>Eliminar producto</a>
-                    </li>";  
+                    </li>";
                   endif;
-                endforeach;            
+                endforeach;
                 ?>
               </ul>
-          <?php 
+          <?php
           else:
             echo "Ningún producto registrado.";
           endif;
-          ?>          
-         
+          ?>
         </p>
       </div>
     </div>
