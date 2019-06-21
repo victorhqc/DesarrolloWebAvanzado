@@ -88,7 +88,7 @@ class TextFileAuthenticator implements Authorize {
         continue;
       }
 
-      $user = new User($raw_user[0], $raw_user[1]);
+      $user = new User($raw_user[0], ($_SERVER['REQUEST_URI']=="/login.php" ? $raw_user[1] : ""));  
       array_push($users, $user);
     }
 
