@@ -59,7 +59,7 @@ class TextFileAuthenticator implements Authorize {
   private function open_authorization_file(string $mode) {
     $file = fopen(getenv("AUTHORIZATION_FILE"), $mode);
     if ($file == false) {
-      throw new Exception("Can"t open the authorization file.");
+      throw new Exception("Can't open the authorization file.");
     }
 
     return $file;

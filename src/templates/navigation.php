@@ -7,6 +7,9 @@ use App\Authorization\Authorization;
 function navigation() {
   $index = Route::get_route("");
   $logout = Route::get_route("logout.php");
+  $list = Route::get_route("list.php");
+  $addProduct = Route::get_route("addProduct.php");
+
 
   $authorization = new Authorization();
   $user = $authorization->get_authorized_user();
@@ -14,7 +17,7 @@ function navigation() {
 
   echo <<<EOL
   <nav class="navbar sticky-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="$index">Catálogo</a>
+    <a class="navbar-brand" href="$list">Ver listado del catálogo</a>
     <div>
       <span class="navbar-text mr-3">
         $username
