@@ -34,6 +34,7 @@ $errors = Route::get_data_from_redirect();
         max-width: 330px;
         padding: 15px;
         margin: auto;
+        border: 1px solid #ccc;
       }
 
       .form-sugnin .form-control {
