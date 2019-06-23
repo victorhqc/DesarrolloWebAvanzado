@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . DIRECTORY_SEPARATOR . "bootstrap.php");
 
-use App\Controllers\IndexController;
+use App\Controllers\RoutesController;
 
-$controller = new IndexController();
-$controller->handle_redirection();
+$controller = new RoutesController();
+$controller->handle_redirection("welcome.php");
