@@ -59,7 +59,7 @@ class TextFileAuthenticator implements Authorize {
   private function open_authorization_file(string $mode) {
     $file = fopen(getenv("AUTHORIZATION_FILE"), $mode);
     if ($file == false) {
-      throw new Exception("Can't open the authorization file.");
+      throw new Exception("No se puede abrir el archivo de autorización.");
     }
 
     return $file;
@@ -83,13 +83,18 @@ class TextFileAuthenticator implements Authorize {
     $users = array();
     while(!feof($file)) {
       $raw_user = fgetcsv($file, 128, ",");
-
+      
+      if (count($raw_user) <2) {
+         continue;
+      }
+      
       if (!$raw_user || sizeof($raw_user) <= 0) {
         continue;
       }
 
-      $user = new User($raw_user[0], ($_SERVER['REQUEST_URI']=="/login.php" ? $raw_user[1] : ""));  
-      array_push($users, $user);
+      $user = new User($raw_user[0], $raw_user[1]);  
+      array_push($users, $user);        
+
     }
 
     fclose($file);
