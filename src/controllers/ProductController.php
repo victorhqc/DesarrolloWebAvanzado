@@ -14,12 +14,21 @@ class ProductController {
   }
 
   public function add($brand,$name, $description) {
+    $this->verify();
+
     $_SESSION['products'][$brand."-".$name] = array('brand'=>$brand,'name'=>$name,'description'=>$description);
     ksort($_SESSION['products']);
   }
 
   public function delete($key) {
-    unset($_SESSION['products'][$key]);
-  }  
+    $this->verify();
 
+    unset($_SESSION['products'][$key]);
+  }
+
+  private function verify() {
+    if (!$this->authorization->is_authorized()) {
+      throw new Exception("No puedes realizar esta acción.");
+    }
+  }
 }

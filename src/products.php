@@ -4,6 +4,11 @@
   require_once("./templates/dependencies.php");
   require_once("./templates/navigation.php");
   use App\Utils\Route;
+  use App\Controllers\RoutesController;
+
+  $controller = new RoutesController();
+  $controller->private_route();
+
   $delete = Route::get_route("deleteProduct.php");
 ?>
 <!DOCTYPE html>

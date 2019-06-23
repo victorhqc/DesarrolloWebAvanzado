@@ -3,6 +3,11 @@
   require_once(__DIR__ . DIRECTORY_SEPARATOR . "bootstrap.php");
   require_once("./templates/dependencies.php");
   require_once("./templates/navigation.php");
+
+  use App\Controllers\RoutesController;
+
+  $controller = new RoutesController();
+  $controller->private_route();
 ?>
 <!DOCTYPE html>
 <html lang="es-MX" dir="ltr">
@@ -31,6 +36,10 @@
             <li>Modelo Vista Controlador.</li>
             <li>Configuraciones de ambiente leyendo un archivo de texto.</li>
           </ul>
+        </p>
+        <p>
+          Como un pequeño bono, decidimos agregar un <b>de forma muy básica</b> lo que sería la
+          administración de productos utilzando <i>$_SESSION</i>.
         </p>
         <div class="mt-5">
           <a
