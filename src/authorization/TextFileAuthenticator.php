@@ -83,12 +83,8 @@ class TextFileAuthenticator implements Authorize {
     $users = array();
     while(!feof($file)) {
       $raw_user = fgetcsv($file, 128, ",");
-      
-      if (count($raw_user) <2) {
-         continue;
-      }
-      
-      if (!$raw_user || sizeof($raw_user) <= 0) {
+
+      if (!$raw_user || count($raw_user) <2) {
         continue;
       }
 
