@@ -10,4 +10,4 @@ use App\Authorization\Authorization;
 $controller = new ProductController();
 $controller->add($_REQUEST['brandProduct'],$_REQUEST['nameProduct'],$_REQUEST['descriptionProduct']);
 
-Route::redirect_to("list.php");
+Route::redirect_to("products.php");
