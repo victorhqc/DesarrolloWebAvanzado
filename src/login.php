@@ -34,6 +34,7 @@ $errors = Route::get_data_from_redirect();
         max-width: 330px;
         padding: 15px;
         margin: auto;
+        border: 1px solid #ccc;
       }
 
       .form-sugnin .form-control {
@@ -59,7 +60,7 @@ $errors = Route::get_data_from_redirect();
   </head>
   <body class="text-center">
     <form class="form-signin" action="<?php echo $form_target; ?>" method="post">
-      <h1 class="h3 mb-3 font-weight-normal">Porfavor inicia sesión</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Por favor inicia sesión</h1>
       <?php
         if (sizeof($errors) > 0) {
           foreach ($errors as $key => $value) {
