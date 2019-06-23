@@ -10,4 +10,4 @@ use App\Authorization\Authorization;
 $controller = new ProductController();
 $controller->delete($_REQUEST['key']);
 
-Route::redirect_to("list.php");
+Route::redirect_to("products.php");
