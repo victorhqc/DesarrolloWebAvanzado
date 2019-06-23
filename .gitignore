@@ -20,3 +20,5 @@ Homestead.json
 .rocketeer/
 
 users.csv
+.htaccess
+sftp-config.json
