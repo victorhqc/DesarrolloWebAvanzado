@@ -32,6 +32,10 @@
             <li>Configuraciones de ambiente leyendo un archivo de texto.</li>
           </ul>
         </p>
+        <p>
+          Como un pequeño bono, decidimos agregar un <b>de forma muy básica</b> lo que sería la
+          administración de productos utilzando <i>$_SESSION</i>.
+        </p>
         <div class="mt-5">
           <a
             class="btn btn-primary btn-lg"
