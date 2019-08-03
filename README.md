@@ -5,6 +5,7 @@ Software".
 ## Requerimientos
 
 - Instalar [XAMPP](https://www.apachefriends.org/index.html)
+- PHP >=7.3
 - Git
 
 ## XAMPP
@@ -16,6 +17,26 @@ Inicia XAMPP y consluta el [FAQ](http://localhost:8080) de forma local.
 ## Desarrollo
 
 Clona el repositorio localmente antes de empezar.
+
+### Instala Dependencias con Composer
+
+```sh
+# Descargando instalador
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'a5c698ffe4b8e849a443b120cd5ba38043260d5c4023dbf93e1558871f1f07f58274fc6f4c93bcfd858c6bd0775cd8d1') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+
+# Instalando de forma global (Linux)
+mv composer.phar /usr/local/bin/composer
+
+# Instalando Laravel
+composer global require laravel/installer
+
+# Añadiendo los binarios descargados por composer a $PATH
+echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
+source ~/.bashrc
+```
 
 ### Apache
 
