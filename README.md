@@ -30,8 +30,8 @@ php -r "unlink('composer-setup.php');"
 # Instalando de forma global (Linux)
 mv composer.phar /usr/local/bin/composer
 
-# Instalando Lumen
-composer global require "laravel/lumen-installer"
+# Instalando Laravel
+composer global require laravel/installer
 
 # Añadiendo los binarios descargados por composer a $PATH
 echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
