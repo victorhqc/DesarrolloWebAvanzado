@@ -58,3 +58,13 @@ Esto para habilitar el acceso a la tarea.
 Ya que hay muchos archivos en _vendor_, no es recomendable copiar los archivos a la carpeta de
 XAMPP ya que toma mucho tiempo. Por lo tanto, es recomendable montar el volumen de XAMPP en el
 sistema operativo y trabajar directamente en uno de las carpetas expuestas por Apache.
+
+### Base de datos
+
+Ya se han creado migraciones para crear las tablas necesarias. Para ejecutar el comando de
+migración asegúrate de tener MySQL configurado y actualiza las variables necesarias en el archivo
+`.env`. Después simplemente ejecuta
+
+```sh
+php artisan migrate
+```
