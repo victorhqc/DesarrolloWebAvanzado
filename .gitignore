@@ -22,3 +22,7 @@ Homestead.json
 users.csv
 .htaccess
 sftp-config.json
+
+
+.DS_Store
+._.DS_Store
