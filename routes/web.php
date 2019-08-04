@@ -18,3 +18,7 @@ $router->get('/', function () use ($router) {
 $router->get('/login', function ()  {
     return view('login', ['name' => 'James']);
 });
+
+$router->get('/signup', function () {
+    return view('signup', []);
+});

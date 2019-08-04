@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class RedirectIfAuthenticated
 {
     /**
-     * Handle an incoming request.
+     * Maneja una conexión entrante. Redirige al usuario en caso de estar autenticado.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
