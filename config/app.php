@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('CATALOGO_MAESTRIA_UNIR_KEY'),
+    'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 

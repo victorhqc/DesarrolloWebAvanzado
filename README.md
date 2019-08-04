@@ -68,3 +68,26 @@ migración asegúrate de tener MySQL configurado y actualiza las variables neces
 ```sh
 php artisan migrate
 ```
+
+## Problemas conocidos
+
+### Cache
+De vez en cuando, Laravel emite algunos errores referentes al cache. Lo más fácil para arreglarlos
+es hacer lo siguiente.
+
+```sh
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
+```
+
+### Llave de aplicación
+
+Para poder utilizar Laravel, se debe de crear una llave, la cual es la que se utiliza para
+encritpar las contraseñas. Por cuestiones de seguridad, la llave debe de ser diferente en local y
+en producción. Por lo tanto, la llave se debe generar en cada máquina que se utilice.
+
+```sh
+php artisan key:generate
+php artisan config:clear
+```
