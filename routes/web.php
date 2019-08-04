@@ -19,6 +19,5 @@ $router->get('/login', function ()  {
     return view('login', ['name' => 'James']);
 });
 
-$router->get('/signup', function () {
-    return view('signup', []);
-});
+$router->get('signup', 'Auth\SignupController@showSignupForm')->name('signup');
+$router->post('signup', 'Auth\SignupController@signup');
