@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RedirectsUsers;
 
 use App\Http\Controllers\Controller;
 
@@ -13,8 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 
-class SignupController extends Controller
-{
+class SignupController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -24,6 +24,8 @@ class SignupController extends Controller
     | validación y creación.
     |
     */
+
+   use RedirectsUsers;
 
     /**
      * Where to redirect users after registration.
@@ -54,7 +56,7 @@ class SignupController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        Auth::guard()->login($user);
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
@@ -107,6 +109,7 @@ class SignupController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

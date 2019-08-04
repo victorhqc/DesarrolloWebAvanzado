@@ -6,21 +6,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Traits\UsesUuid;
+
 class User extends Authenticatable
 {
     use Notifiable;
-
-    /**
-     * La llave utilizada como primaria, no es de autoincremento, sino UUID
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * La llave primaria es de tipo string
-     * @var string
-     */
-    public $keyType = 'string';
+    use UsesUuid;
 
     /**
      * Los atributos que se pueden asignar al crearse/editarse.
@@ -28,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -38,13 +29,5 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-    ];
-
-    /**
-     * Los atributos que deben ser "parseados" a tipos nativos.
-     *
-     * @var array
-     */
-    protected $casts = [
     ];
 }
