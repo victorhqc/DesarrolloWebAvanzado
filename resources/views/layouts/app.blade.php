@@ -25,7 +25,6 @@
     </head>
     <body>
         @section('topbar')
-            This is the master topbar.
         @show
 
         <div>
