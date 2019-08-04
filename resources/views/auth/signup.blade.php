@@ -37,8 +37,8 @@
             action="{{ action('Auth\SignupController@signup') }}"
             method="post"
         >
-            @csrf
             <h1 class="h3 mb-3 font-weight-normal">Regístrate</h1>
+            @csrf
             @if ($errors->any())
                 <div class="alert alert-danger" role="alety">
                     <ul>
@@ -110,7 +110,7 @@
                 Registrarse
             </button>
             <p class="mt-5 mb-3">
-                <a href="/login">Inicia sesión</a>
+                <a href="<?php echo url("/login") ?>">Inicia sesión</a>
             </p>
       </form>
     </div>

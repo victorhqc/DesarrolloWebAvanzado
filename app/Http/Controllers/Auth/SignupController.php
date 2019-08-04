@@ -63,7 +63,7 @@ class SignupController extends Controller {
     }
 
     /**
-     * Create a new controller instance.
+     * Crea una instancia del controlador.
      *
      * @return void
      */

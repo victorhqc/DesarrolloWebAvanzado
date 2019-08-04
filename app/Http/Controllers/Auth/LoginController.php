@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -19,7 +23,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use RedirectsUsers;
 
     /**
      * Where to redirect users after login.
@@ -33,8 +37,73 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm() {
+        return view('auth.login');
+    }
+
+    public function login(Request $request) {
+        $this->validateLogin($request);
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+
+        return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Termina la sesión de un usuario.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
+    }
+
+    /**
+     * Envía la respuesta después de que un usuario fue autenticado.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        return redirect()->intended($this->redirectPath());
+    }
+
+    protected function validateLogin(Request $request) {
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
+
+    protected function attemptLogin(Request $request) {
+        return Auth::guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        );
+    }
+
+    /**
+     * Obtiene la autorización necesaria de cada request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return $request->only('email', 'password');
     }
 }
