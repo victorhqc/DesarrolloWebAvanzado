@@ -39,21 +39,31 @@
 
 @section('content')
     <div class="main-login text-center">
-      <form class="form-signin" action="#" method="post">
+      <form class="form-signin" action="{{ action('Auth\LoginController@login') }}" method="post">
         <h1 class="h3 mb-3 font-weight-normal">Inicia sesión</h1>
-        <label class="sr-only" for="inputEmail">Correo electrónico</label>
+        @csrf
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alety">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <label class="sr-only" for="input_email">Correo electrónico</label>
         <input
-          id="inputEmail"
-          name="username"
+          id="input_email"
+          name="email"
           class="form-control"
           type="email"
           placeholder="Correo electrónico"
           required=""
           autofocus=""
           />
-        <label class="sr-only" for="inputPassword">Contraseña</label>
+        <label class="sr-only" for="input_password">Contraseña</label>
         <input
-          id="inputPassword"
+          id="input_password"
           name="password"
           class="form-control"
           type="password"
