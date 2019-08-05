@@ -32,11 +32,6 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct() {
         $this->middleware('guest')->except('logout');
     }
@@ -66,6 +61,7 @@ class LoginController extends Controller
         Auth::guard()->logout();
 
         $request->session()->invalidate();
+        $request->session()->flush();
 
         return redirect('/');
     }
@@ -105,5 +101,20 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         return $request->only('email', 'password');
+    }
+
+    /**
+     * Obtiene el mensaje de error al intentar iniciar sesión.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            'email' => 'El usuario/contraseña es incorrecto, revisa que ambos sean correctos.',
+        ]);
     }
 }
