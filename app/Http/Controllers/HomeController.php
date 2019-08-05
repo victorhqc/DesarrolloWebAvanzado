@@ -6,15 +6,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Crea una instancia del controlador.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('guest');
-    // }
+    public function __construct() {
+        $this->middleware('auth');
+    }
 
     public function showHome() {
         return view('home');
