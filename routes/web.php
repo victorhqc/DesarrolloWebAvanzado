@@ -13,6 +13,11 @@ $router->get('/', 'HomeController@showHome')->name('home');
 $router->get('home', 'HomeController@showHome')->name('home');
 
 $router->get('products', 'ProductsController@showProducts')->name('products');
+$router->get('productAdd', 'ProductsController@addProducts')->name('productAdd');
+$router->post('add', 'ProductsController@add');
+$router->get('delete/{id}', 'ProductsController@delete')->name('delete');
+
+
 
 /*
 |--------------------------------------------------------------------------
