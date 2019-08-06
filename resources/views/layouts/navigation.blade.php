@@ -16,7 +16,7 @@
     </div>
     <div>
         <span class="navbar-text mr-3">
-            {{ $email }}
+            <img src="{{ $email_img }}" alt="{{ $email }}" title="{{ $email }}" />
         </span>
         <span class="navbar-text">
             <a class="btn btn-outline-info" href="{{ $login_url }}" role="button">

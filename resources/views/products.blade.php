@@ -15,6 +15,7 @@
     @component('layouts.navigation', [
         'login_text' => $email ? 'Cerrar sesión' : 'Iniciar sesión',
         'login_url' => $email ? url("/logout") : url("/login"),
+        'email_img' => $email_img,
         'email' => $email
     ])
     @endcomponent

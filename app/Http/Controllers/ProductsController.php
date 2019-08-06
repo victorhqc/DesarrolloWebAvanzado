@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Traits\HasAdministrator;
+use App\Traits\GravatarEmail;
+
 use App\Product;
 
 class ProductsController extends Controller {
 
     use HasAdministrator;
+    use GravatarEmail;
 
     public function showProducts(Request $request) {
         $isAdmin = $this->isAdmin($request);
@@ -21,7 +24,8 @@ class ProductsController extends Controller {
         return view('products', [
             'isAdmin' => $isAdmin,
             'products' => $products,
-            'email' => isset($user) ? $user->email : false,
+            'email_img' => $this->email_gravatar_url($request, 30),
+            'email' => isset($user) ? $user->email : '',
         ]);
     }
 }
