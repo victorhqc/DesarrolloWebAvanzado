@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Catálogo</a>
+    <a class="navbar-brand" href="<?php echo url("/") ?>">Catálogo</a>
     <button
         class="navbar-toggler"
         type="button"
