@@ -37,6 +37,9 @@
     </style>
 @endsection
 
+@section('topbar')
+@endsection
+
 @section('content')
     <div class="main-login text-center">
       <form class="form-signin" action="{{ action('Auth\LoginController@login') }}" method="post">
