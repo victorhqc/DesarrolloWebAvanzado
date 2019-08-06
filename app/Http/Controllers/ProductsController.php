@@ -13,6 +13,7 @@ class ProductsController extends Controller {
 
     public function showProducts(Request $request) {
         $isAdmin = $this->isAdmin($request);
+        $user = $request->user();
 
         // TODO: Se debería de implementar un páginado en algún momento.
         $products = Product::all();
@@ -20,6 +21,7 @@ class ProductsController extends Controller {
         return view('products', [
             'isAdmin' => $isAdmin,
             'products' => $products,
+            'email' => isset($user) ? $user->email : false,
         ]);
     }
 }

@@ -12,16 +12,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav" role="navigation">
-            <li>Hello World</li>
         </ul>
     </div>
     <div>
         <span class="navbar-text mr-3">
-            Test
+            {{ $email }}
         </span>
         <span class="navbar-text">
-            <a class="btn btn-outline-info" href="<?php echo url("/logout") ?>" role="button">
-                Cerrar sesión
+            <a class="btn btn-outline-info" href="{{ $login_url }}" role="button">
+                {{ $login_text }}
             </a>
         </span>
     </div>

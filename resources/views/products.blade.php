@@ -11,6 +11,15 @@
     </style>
 @endsection
 
+@section('topbar')
+    @component('layouts.navigation', [
+        'login_text' => $email ? 'Cerrar sesión' : 'Iniciar sesión',
+        'login_url' => $email ? url("/logout") : url("/login"),
+        'email' => $email
+    ])
+    @endcomponent
+@endsection
+
 @section('content')
     <div class="container">
         <h1>Productos</h1>
