@@ -59,5 +59,24 @@ class ProductsController extends Controller {
         $delete->delete();
 
         return redirect(route('products'));
+    }     
+
+    public function typeAdd(Request $request) {
+        $isAdmin = $this->isAdmin($request);
+
+        return view('typeAdd');
+    }        
+    public function addType(Request $request) {
+        if($_REQUEST['type']==1){
+            $ProductType = new ProductType();
+            $ProductType->id=ProductType::max('id')+1; 
+        }else{
+            $ProductType = new Brand();
+            $ProductType->id=Brand::max('id')+1; 
+        }
+        $ProductType->name=$_REQUEST['nombre']; 
+        $ProductType->save();
+        
+        return redirect(route('productAdd'));
     }       
 }

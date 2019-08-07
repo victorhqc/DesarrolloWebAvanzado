@@ -13,10 +13,11 @@
 
 @section('content')
     <div class="container">
-        <h1>Agregar Productos</h1>
-        <div class="d-flex flex-row">
+
+        <div class="d-flex justify-content-center">
             <form method="post" action="add">
                 @csrf
+                <h1>Agregar Productos</h1>
                 <div class="card product_card">
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">                
@@ -44,10 +45,7 @@
                             </select>
                         </li>                    
                       </ul>
-                      <button type="submit" class="btn btn-success">Agregar</button>
-
-
-     
+                      <button type="submit" class="btn btn-success"> <i class="fa fa-plus-square" aria-hidden="true"></i> Agregar</button>
                 </div>
             </form>
            
