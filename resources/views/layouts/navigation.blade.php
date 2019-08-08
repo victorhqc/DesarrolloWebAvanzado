@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{route('/')}}">Catálogo</a>
+    <a class="navbar-brand" href="{{route('products')}}">Catálogo</a>
     <a class="navbar-brand" href="{{route('productAdd')}}">Agregar producto</a>
     <a class="navbar-brand" href="{{route('typeAdd')}}">Agregar tipo o marca</a>
     <button
