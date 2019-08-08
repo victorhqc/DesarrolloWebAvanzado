@@ -11,12 +11,16 @@
 
 $router->get('/', 'ProductsController@showProducts')->name('products');
 $router->get('products', 'ProductsController@showProducts')->name('products');
-$router->get('productAdd', 'ProductsController@addProducts')->name('productAdd');
-$router->post('add', 'ProductsController@add');
-$router->get('delete/{id}', 'ProductsController@delete')->name('delete');
+$router->get('add_product', 'ProductsController@showAddProduct')->name('add_product');
+$router->post('submit_product', 'ProductsController@submitProduct');
 
-$router->get('typeAdd', 'ProductsController@typeAdd')->name('typeAdd');
-$router->post('addType', 'ProductsController@addType');
+// Al tratarse de un request por un formulario debe usarse únicamente GET o POST.
+// Una aplicación de tipo REST debería utilizar el método DELETE.
+$router->post('remove_product', 'ProductsController@removeProduct');
+
+// TODO: Mover a su propio controlador.
+$router->get('add_product_type', 'ProductsController@showAddProductType')->name('add_product_type');
+$router->post('submit_product_type', 'ProductsController@submitProductType');
 
 /*
 |--------------------------------------------------------------------------

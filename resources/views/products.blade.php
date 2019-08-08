@@ -7,6 +7,10 @@
         .product_card {
             width: 18rem;
         }
+
+        .inline-form {
+            display: inline-block;
+        }
     </style>
 @endsection
 
@@ -54,10 +58,17 @@
                             Ver producto
                         </a>
                         @if($isAdmin)
-                            <!-- TODO: Añadir funcionamiento de eliminar -->
-                            <a href="{{route('delete',$product->id)}}" class="btn btn-danger">
-                                Eliminar
-                            </a>
+                            <form
+                                action="{{ action('ProductsController@removeProduct') }}"
+                                method="post"
+                                class="inline-form"
+                            >
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $product->id}} ">
+                                <button type="submit" class="btn btn-danger">
+                                    Eliminar
+                                </button>
+                            </form>
                         @endif
                     </div>
                 </div>

@@ -21,7 +21,7 @@ class ProductsController extends Controller {
         return view('products', $this->getBaseRouteParams($request));
     }
 
-    public function addProducts(Request $request) {
+    public function showAddProduct(Request $request) {
         $productsTypes = ProductType::all();
         $brands = Brand::all();
 
@@ -34,7 +34,7 @@ class ProductsController extends Controller {
         ));
     }
 
-    public function add(Request $request) {
+    public function submitProduct(Request $request) {
         $file = $request->file('fileToUpload');
         $destinationPath = 'uploads';
 
@@ -52,18 +52,20 @@ class ProductsController extends Controller {
         return redirect(route('products'));
     }
 
-    public function delete($id) {
+    public function removeProduct(Request $request) {
+        $id = $request->id;
+
         $delete = Product::find($id);
         $delete->delete();
 
         return redirect(route('products'));
     }
 
-    public function typeAdd(Request $request) {
+    public function showAddProductType(Request $request) {
         return view('typeAdd');
     }
 
-    public function addType(Request $request) {
+    public function submitProductType(Request $request) {
         if($_REQUEST['type']==1){
             $ProductType = new ProductType();
             $ProductType->id=ProductType::max('id')+1;
