@@ -15,45 +15,26 @@ class ProductsController extends Controller {
 
         $products = $this->getProducts($request);
 
-        return view('products', [
-            'isAdmin' =>  isset($user) ? $user->is_admin() : false,
-            'products' => $products,
-            'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
-            'email' => isset($user) ? $user->email : '',
-            'search' => $request->input('search'),
-        ]);
-    }
-
-    private function getProducts(Request $request) {
-        $needle = $request->input('search');
-
-        if (!isset($needle) || !$needle) {
-            return Product::all();
-        }
-
-        return Product::searchBy(trim($needle));
+        return view('products', $this->getBaseRouteParams($request));
     }
 
     public function addProducts(Request $request) {
-        $isAdmin = $this->isAdmin($request);
-
-        // TODO: Se debería de implementar un páginado en algún momento.
-        $products = Product::all();
         $productsTypes = ProductType::all();
         $brands = Brand::all();
 
-        return view('productAdd', [
-            'isAdmin' => $isAdmin,
-            'products' => $products,
-            'productsTypes' => $productsTypes,
-            'brands' => $brands,
-        ]);
+        return view('productAdd', array_merge(
+            $this->getBaseRouteParams($request),
+            [
+                'productsTypes' => $productsTypes,
+                'brands' => $brands,
+            ]
+        ));
     }
 
     public function add(Request $request) {
-
         $file = $request->file('fileToUpload');
         $destinationPath = 'uploads';
+
         $file->move($destinationPath,$file->getClientOriginalName());
 
         $products = new Product();
@@ -64,6 +45,7 @@ class ProductsController extends Controller {
         $products->product_type_id=$_REQUEST['type'];
         $products->brand_id=$_REQUEST['brand'];
         $products->save();
+
         return redirect(route('products'));
     }
 
@@ -75,10 +57,9 @@ class ProductsController extends Controller {
     }
 
     public function typeAdd(Request $request) {
-        $isAdmin = $this->isAdmin($request);
-
         return view('typeAdd');
     }
+
     public function addType(Request $request) {
         if($_REQUEST['type']==1){
             $ProductType = new ProductType();
@@ -91,5 +72,27 @@ class ProductsController extends Controller {
         $ProductType->save();
 
         return redirect(route('productAdd'));
+    }
+
+    private function getBaseRouteParams(Request $request) {
+        $user = $request->user();
+
+        return [
+            'isAdmin' => isset($user) ? $user->is_admin() : false,
+            'products' => $this->getProducts($request),
+            'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
+            'email' => isset($user) ? $user->email : '',
+            'search' => $request->input('search'),
+        ];
+    }
+
+    private function getProducts(Request $request) {
+        $needle = $request->input('search');
+
+        if (!isset($needle) || !$needle) {
+            return Product::all();
+        }
+
+        return Product::searchBy(trim($needle));
     }
 }
