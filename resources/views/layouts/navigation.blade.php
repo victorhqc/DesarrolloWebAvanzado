@@ -1,7 +1,29 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
     <a class="navbar-brand" href="{{route('products')}}">Catálogo</a>
-    <a class="navbar-brand" href="{{route('productAdd')}}">Agregar producto</a>
-    <a class="navbar-brand" href="{{route('typeAdd')}}">Agregar tipo o marca</a>
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" role="navigation">
+            @foreach ($route_paths as $path)
+                <li class="nav-item">
+                    <a
+                        class="nav-link {{ $path['is_active'] ? 'active' : '' }}"
+                        href="{{ $path['path_name'] }}">
+                        {{ $path['name'] }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
     <button
         class="navbar-toggler"
         type="button"

@@ -15,7 +15,8 @@
         'login_text' => $email ? 'Cerrar sesión' : 'Iniciar sesión',
         'login_url' => $email ? url("/logout") : url("/login"),
         'email_img' => $email_img,
-        'email' => $email
+        'email' => $email,
+        'route_paths' => $route_paths
     ])
     @endcomponent
 @endsection
