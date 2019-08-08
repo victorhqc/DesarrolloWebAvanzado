@@ -8,6 +8,7 @@
             width: 18rem;
             margin: 0 1rem;
         }
+        #fileToUpload{width: 180px}
     </style>
 @endsection
 
@@ -15,7 +16,7 @@
     <div class="container">
 
         <div class="d-flex justify-content-center">
-            <form method="post" action="add">
+            <form method="post" action="add" enctype="multipart/form-data">
                 @csrf
                 <h1>Agregar Productos</h1>
                 <div class="card product_card">
@@ -43,7 +44,13 @@
                                     <option value="{{$brand['id']}}">{{$brand['name']}}</option>
                                 @endforeach
                             </select>
-                        </li>                    
+                        </li>  
+
+                        <li class="list-group-item">  
+                            <strong>Selecciona una imagen:</strong> 
+                            <input type="file" name="fileToUpload" id="fileToUpload" required class="btn btn-success">
+                        </li>  
+
                       </ul>
                       <button type="submit" class="btn btn-success"> <i class="fa fa-plus-square" aria-hidden="true"></i> Agregar</button>
                 </div>

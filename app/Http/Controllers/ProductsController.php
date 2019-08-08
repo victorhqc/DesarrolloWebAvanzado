@@ -42,11 +42,15 @@ class ProductsController extends Controller {
     }  
 
     public function add(Request $request) {
-
+        
+        $file = $request->file('fileToUpload');  
+        $destinationPath = 'uploads';
+        $file->move($destinationPath,$file->getClientOriginalName());    
+  
         $products = new Product();
         $products->id=Product::max('id')+1; 
         $products->name=$_REQUEST['nombre'];
-        $products->img_src=$_REQUEST['nombre'];
+        $products->img_src=$file->getClientOriginalName();
         $products->description=$_REQUEST['descripcion'];
         $products->product_type_id=$_REQUEST['type'];
         $products->brand_id=$_REQUEST['brand'];

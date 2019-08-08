@@ -17,7 +17,7 @@
         <div class="d-flex flex-row">
             @foreach($products as $product)
                 <div class="card product_card">
-                    <img src="<?php echo $product->img_src ?>" class="card-img-top" alt="..." />
+                    <img src="/uploads/<?php echo $product->img_src ?>" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $product->name ?></h5>
                         <p class="card-text"><?php echo $product->description ?></p>
