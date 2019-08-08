@@ -17,4 +17,11 @@ class Brand extends Model
      * @var string
      */
     public $keyType = 'string';
+
+    /**
+     * Una marca tiene muchos productos.
+     */
+    public function products() {
+        return $this->hasMany('App\Brand');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 use App\Product;
 use App\ProductType;
@@ -42,7 +43,10 @@ class ProductsController extends Controller {
 
         Product::create([
             'name' => $request->input('product_name'),
-            'img_src' => $file->getClientOriginalName(),
+            // Se concatena la ruta del servidor. Esto puede ocacionar algunos problemas al
+            // migrar el servidor o la base de datos. Pero es fácil de manejar, y esto
+            // nos evita concatenar la ruta del servidor cada vez que se haga una consulta.
+            'img_src' => URL::to('/') . '/uploads/'. $file->getClientOriginalName(),
             'description' => $request->input('product_description'),
             'product_type_id' => $request->input('product_type'),
             'brand_id' => $request->input('product_brand'),

@@ -33,6 +33,20 @@ class Product extends Model
     ];
 
     /**
+     * Un producto pertenece a una marca.
+     */
+    public function brand() {
+        return $this->belongsTo('App\Brand');
+    }
+
+    /**
+     * Un producto pertenece a un tipo.
+     */
+    public function productType() {
+        return $this->gelongsTo('App\ProductType');
+    }
+
+    /**
      * Busca productos utilizando una aguja por:
      * - nombre
      * - tipo de producto
