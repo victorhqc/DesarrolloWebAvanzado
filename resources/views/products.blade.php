@@ -54,7 +54,7 @@
                         </a>
                         @if($isAdmin)
                             <!-- TODO: Añadir funcionamiento de eliminar -->
-                            <a href="#" class="btn btn-danger">
+                            <a href="{{route('delete',$product->id)}}" class="btn btn-danger">
                                 Eliminar
                             </a>
                         @endif
