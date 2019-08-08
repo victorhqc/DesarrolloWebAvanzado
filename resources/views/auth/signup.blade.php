@@ -113,7 +113,7 @@
                 Registrarse
             </button>
             <p class="mt-5 mb-3">
-                <a href="<?php echo url("/login") ?>">Inicia sesión</a>
+                <a href="{{ url("/login") }}">Inicia sesión</a>
             </p>
       </form>
     </div>

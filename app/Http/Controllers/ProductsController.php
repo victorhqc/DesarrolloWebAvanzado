@@ -4,25 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Traits\HasAdministrator;
 use App\Product;
 use App\ProductType;
 use App\Brand;
 
 class ProductsController extends Controller {
 
-    use HasAdministrator;
-
     public function showProducts(Request $request) {
-        $isAdmin = $this->isAdmin($request);
+        $user = $request->user();
 
-        // TODO: Se debería de implementar un páginado en algún momento.
-        $products = Product::all();
+        $products = $this->getProducts($request);
 
         return view('products', [
-            'isAdmin' => $isAdmin,
+            'isAdmin' =>  isset($user) ? $user->is_admin() : false,
             'products' => $products,
+            'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
+            'email' => isset($user) ? $user->email : '',
+            'search' => $request->input('search'),
         ]);
+    }
+
+    private function getProducts(Request $request) {
+        $needle = $request->input('search');
+
+        if (!isset($needle) || !$needle) {
+            return Product::all();
+        }
+
+        return Product::searchBy(trim($needle));
     }
 
     public function addProducts(Request $request) {
@@ -39,16 +48,16 @@ class ProductsController extends Controller {
             'productsTypes' => $productsTypes,
             'brands' => $brands,
         ]);
-    }  
+    }
 
     public function add(Request $request) {
-        
-        $file = $request->file('fileToUpload');  
+
+        $file = $request->file('fileToUpload');
         $destinationPath = 'uploads';
-        $file->move($destinationPath,$file->getClientOriginalName());    
-  
+        $file->move($destinationPath,$file->getClientOriginalName());
+
         $products = new Product();
-        $products->id=Product::max('id')+1; 
+        $products->id=Product::max('id')+1;
         $products->name=$_REQUEST['nombre'];
         $products->img_src=$file->getClientOriginalName();
         $products->description=$_REQUEST['descripcion'];
@@ -56,31 +65,31 @@ class ProductsController extends Controller {
         $products->brand_id=$_REQUEST['brand'];
         $products->save();
         return redirect(route('products'));
-    }    
+    }
 
     public function delete($id) {
         $delete = Product::find($id);
         $delete->delete();
 
         return redirect(route('products'));
-    }     
+    }
 
     public function typeAdd(Request $request) {
         $isAdmin = $this->isAdmin($request);
 
         return view('typeAdd');
-    }        
+    }
     public function addType(Request $request) {
         if($_REQUEST['type']==1){
             $ProductType = new ProductType();
-            $ProductType->id=ProductType::max('id')+1; 
+            $ProductType->id=ProductType::max('id')+1;
         }else{
             $ProductType = new Brand();
-            $ProductType->id=Brand::max('id')+1; 
+            $ProductType->id=Brand::max('id')+1;
         }
-        $ProductType->name=$_REQUEST['nombre']; 
+        $ProductType->name=$_REQUEST['nombre'];
         $ProductType->save();
-        
+
         return redirect(route('productAdd'));
-    }       
+    }
 }

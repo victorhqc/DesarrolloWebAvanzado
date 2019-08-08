@@ -28,7 +28,7 @@
         @yield('app-styles')
     </head>
     <body>
-        @yield('topbar', View::make('layouts.navigation'))
+        @yield('topbar')
 
         <div>
             @yield('content')
