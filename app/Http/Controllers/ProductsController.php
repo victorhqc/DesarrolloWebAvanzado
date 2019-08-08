@@ -25,7 +25,7 @@ class ProductsController extends Controller {
         $productsTypes = ProductType::all();
         $brands = Brand::all();
 
-        return view('productAdd', array_merge(
+        return view('add_product', array_merge(
             $this->getBaseRouteParams($request),
             [
                 'productsTypes' => $productsTypes,
