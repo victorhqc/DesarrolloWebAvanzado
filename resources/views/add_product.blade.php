@@ -24,7 +24,11 @@
 @section('content')
     <div class="container">
         <div class="d-flex justify-content-center">
-            <form method="post" action="add" enctype="multipart/form-data">
+            <form
+                method="post"
+                action="{{ action('ProductsController@submitProduct') }}"
+                enctype="multipart/form-data"
+            >
                 @csrf
                 <h1>Agregar Productos</h1>
                 <ul class="list-group list-group-flush">
@@ -73,7 +77,7 @@
                         <input
                             type="file"
                             class="upload_file"
-                            id="fileToUpload"
+                            name="upload_file"
                             required
                             class="btn btn-success"
                         >

@@ -35,25 +35,24 @@ class ProductsController extends Controller {
     }
 
     public function submitProduct(Request $request) {
-        $file = $request->file('fileToUpload');
+        $file = $request->file('upload_file');
         $destinationPath = 'uploads';
 
-        $file->move($destinationPath,$file->getClientOriginalName());
+        $file->move($destinationPath, $file->getClientOriginalName());
 
-        $products = new Product();
-        $products->id=Product::max('id')+1;
-        $products->name=$_REQUEST['nombre'];
-        $products->img_src=$file->getClientOriginalName();
-        $products->description=$_REQUEST['descripcion'];
-        $products->product_type_id=$_REQUEST['type'];
-        $products->brand_id=$_REQUEST['brand'];
-        $products->save();
+        Product::create([
+            'name' => $request->input('product_name'),
+            'img_src' => $file->getClientOriginalName(),
+            'description' => $request->input('product_description'),
+            'product_type_id' => $request->input('product_type'),
+            'brand_id' => $request->input('product_brand'),
+        ]);
 
         return redirect(route('products'));
     }
 
     public function removeProduct(Request $request) {
-        $id = $request->id;
+        $id = $request->input('id');
 
         $delete = Product::find($id);
         $delete->delete();
