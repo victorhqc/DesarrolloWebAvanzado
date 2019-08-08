@@ -11,6 +11,12 @@
 
 $router->get('/', 'ProductsController@showProducts')->name('products');
 $router->get('products', 'ProductsController@showProducts')->name('products');
+$router->get('productAdd', 'ProductsController@addProducts')->name('productAdd');
+$router->post('add', 'ProductsController@add');
+$router->get('delete/{id}', 'ProductsController@delete')->name('delete');
+
+$router->get('typeAdd', 'ProductsController@typeAdd')->name('typeAdd');
+$router->post('addType', 'ProductsController@addType');
 
 /*
 |--------------------------------------------------------------------------

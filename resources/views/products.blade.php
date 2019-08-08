@@ -15,7 +15,8 @@
         'login_text' => $email ? 'Cerrar sesión' : 'Iniciar sesión',
         'login_url' => $email ? url("/logout") : url("/login"),
         'email_img' => $email_img,
-        'email' => $email
+        'email' => $email,
+        'route_paths' => $route_paths
     ])
     @endcomponent
 @endsection
@@ -54,7 +55,7 @@
                         </a>
                         @if($isAdmin)
                             <!-- TODO: Añadir funcionamiento de eliminar -->
-                            <a href="#" class="btn btn-danger">
+                            <a href="{{route('delete',$product->id)}}" class="btn btn-danger">
                                 Eliminar
                             </a>
                         @endif
