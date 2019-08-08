@@ -5,8 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
+use App\Traits\UsesUuid;
+
 class Product extends Model
 {
+    use UsesUuid;
+
     /**
      * La llave utilizada como primaria, no es de autoincremento, sino UUID
      * @var bool
@@ -19,6 +23,35 @@ class Product extends Model
      */
     public $keyType = 'string';
 
+    /**
+     * Los atributos que se pueden asignar al crearse/editarse.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'img_src', 'description', 'product_type_id', 'brand_id',
+    ];
+
+    /**
+     * Un producto pertenece a una marca.
+     */
+    public function brand() {
+        return $this->belongsTo('App\Brand');
+    }
+
+    /**
+     * Un producto pertenece a un tipo.
+     */
+    public function productType() {
+        return $this->gelongsTo('App\ProductType');
+    }
+
+    /**
+     * Busca productos utilizando una aguja por:
+     * - nombre
+     * - tipo de producto
+     * - marca
+     */
     public static function searchBy(String $needle) {
         return DB::table("products")
             ->join("brands", "products.brand_id", "=", "brands.id")

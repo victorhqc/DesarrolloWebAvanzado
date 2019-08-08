@@ -17,4 +17,11 @@ class ProductType extends Model
      * @var string
      */
     public $keyType = 'string';
+
+    /**
+     * Un tipo de producto tiene muchos productos.
+     */
+    public function products() {
+        return $this->hasMany('App\Product');
+    }
 }
