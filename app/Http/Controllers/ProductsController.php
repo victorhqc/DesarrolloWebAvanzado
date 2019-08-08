@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\ProductType;
 use App\Brand;
+use App\Traits\HasRoutes;
 
 class ProductsController extends Controller {
+
+    use HasRoutes;
 
     public function showProducts(Request $request) {
         $user = $request->user();
@@ -83,6 +86,7 @@ class ProductsController extends Controller {
             'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
             'email' => isset($user) ? $user->email : '',
             'search' => $request->input('search'),
+            'route_paths' => $this->buildRoutes($request),
         ];
     }
 
