@@ -32,7 +32,7 @@ class SignupController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/products';
 
     /**
      * Show the application registration form.
@@ -58,8 +58,7 @@ class SignupController extends Controller {
 
         Auth::guard()->login($user);
 
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+        return redirect($this->redirectPath());
     }
 
     /**

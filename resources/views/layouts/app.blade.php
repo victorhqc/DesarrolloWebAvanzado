@@ -24,8 +24,7 @@
         @yield('app-styles')
     </head>
     <body>
-        @section('topbar')
-        @show
+        @yield('topbar')
 
         <div>
             @yield('content')

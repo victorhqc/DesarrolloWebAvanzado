@@ -37,6 +37,9 @@
     </style>
 @endsection
 
+@section('topbar')
+@endsection
+
 @section('content')
     <div class="main-login text-center">
       <form class="form-signin" action="{{ action('Auth\LoginController@login') }}" method="post">
@@ -74,7 +77,7 @@
           Iniciar sesión
         </button>
         <p class="mt-5 mb-3">
-          <a href="<?php echo url("/signup") ?>">Registrarse</a>
+          <a href="{{ url("/signup") }}">Registrarse</a>
         </p>
       </form>
   </div>
