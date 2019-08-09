@@ -19,8 +19,8 @@ $router->post('submit_product', 'ProductsController@submitProduct');
 $router->post('remove_product', 'ProductsController@removeProduct');
 
 // TODO: Mover a su propio controlador.
-$router->get('add_product_type', 'ProductsController@showAddProductType')->name('add_product_type');
-$router->post('submit_product_type', 'ProductsController@submitProductType');
+$router->get('add_product_type', 'TypeController@showAddProductType')->name('add_product_type');
+$router->post('submit_product_type', 'TypeController@submitProductType');
 
 /*
 |--------------------------------------------------------------------------
