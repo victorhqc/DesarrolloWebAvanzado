@@ -20,25 +20,25 @@
                 <h1>Tipo o Marca</h1>
                 <div class="card product_card">
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item">                
-                            <strong>Seleccione una opcion:</strong> 
+                        <li class="list-group-item">
+                            <strong>Seleccione una opcion:</strong>
                             <select name="type" class="form-control" required>
                                 <option value=""></option>
                                 <option value="1">Tipo</option>
                                 <option value="2">Marca</option>
                             </select>
-                        </li>                        
-                        <li class="list-group-item">                
+                        </li>
+                        <li class="list-group-item">
                             <strong>Nombre:</strong> <input class="form-control" type="text" name="nombre" required>
                         </li>
 
 
-                                      
+
                       </ul>
                       <button type="submit" class="btn btn-success"> <i class="fa fa-plus-square" aria-hidden="true"></i> Agregar</button>
                 </div>
             </form>
-           
+
         </div>
     </div>
 @endsection

@@ -14,13 +14,13 @@ trait HasRoutes {
             "is_public" => true
         ],
         [
-            "path_name" => "productAdd",
+            "path_name" => "add_product",
             "name" => "Agregar producto",
             "is_active" => false,
             "is_public" => false
         ],
         [
-            "path_name" => "typeAdd",
+            "path_name" => "add_product_type",
             "name" => "Agregar tipo o marca",
             "is_active" => false,
             "is_public" => false
