@@ -9,21 +9,36 @@
 |
 */
 
-$router->get('/', 'ProductsController@showProducts')->name('products');
-$router->get('products', 'ProductsController@showProducts')->name('products');
-$router->get('add_product', 'ProductsController@showAddProduct')->name('add_product');
-$router->post('submit_product', 'ProductsController@submitProduct');
+$router
+    ->get('/', 'ProductsController@showProducts')
+    ->name('products');
+$router
+    ->get('products', 'ProductsController@showProducts')
+    ->name('products');
+
+$router
+    ->get('add_product', 'ProductsController@showAddProduct')
+    ->middleware('only_admin')
+    ->name('add_product');
+$router
+    ->post('submit_product', 'ProductsController@submitProduct')
+    ->middleware('only_admin');
 
 // Al tratarse de un request por un formulario debe usarse únicamente GET o POST.
 // Una aplicación de tipo REST debería utilizar el método DELETE. Nosotros utilizamos el método
 // POST para que al menos el usuario no pueda borrar un usuario accidentalmente al navegar a la
 // ruta manualmente.
-$router->post('remove_product', 'ProductsController@removeProduct');
+$router
+    ->post('remove_product', 'ProductsController@removeProduct')
+    ->middleware('only_admin');
 
 $router
     ->get('add_product_type', 'BrandAndProductTypeController@showAddProductType')
+    ->middleware('only_admin')
     ->name('add_product_type');
-$router->post('submit_product_type', 'BrandAndProductTypeController@submitProductType');
+$router
+    ->post('submit_product_type', 'BrandAndProductTypeController@submitProductType')
+    ->middleware('only_admin');
 
 /*
 |--------------------------------------------------------------------------
