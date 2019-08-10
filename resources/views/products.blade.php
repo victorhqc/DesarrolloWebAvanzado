@@ -58,16 +58,18 @@
                             Ver producto
                         </a>
                         @if($isAdmin)
+                            <button type="submit" value="{{$product->id}}" class="btn btn-danger delete">
+                                Eliminar
+                            </button>                        
                             <form
                                 action="{{ action('ProductsController@removeProduct') }}"
                                 method="post"
                                 class="inline-form"
+                                id="{{$product->id}}"
                             >
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $product->id}} ">
-                                <button type="submit" class="btn btn-danger">
-                                    Eliminar
-                                </button>
+
                             </form>
                         @endif
                     </div>

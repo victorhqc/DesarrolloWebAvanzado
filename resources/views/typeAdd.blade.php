@@ -15,13 +15,13 @@
     <div class="container">
 
         <div class="d-flex justify-content-center">
-            <form method="post" action="addType">
+            <form method="post" action="{{ action('TypeController@submitProductType') }}">
                 @csrf
                 <h1>Tipo o Marca</h1>
                 <div class="card product_card">
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <strong>Seleccione una opcion:</strong>
+                            <strong>Seleccione una opción:</strong>
                             <select name="type" class="form-control" required>
                                 <option value=""></option>
                                 <option value="1">Tipo</option>
@@ -31,9 +31,6 @@
                         <li class="list-group-item">
                             <strong>Nombre:</strong> <input class="form-control" type="text" name="nombre" required>
                         </li>
-
-
-
                       </ul>
                       <button type="submit" class="btn btn-success"> <i class="fa fa-plus-square" aria-hidden="true"></i> Agregar</button>
                 </div>

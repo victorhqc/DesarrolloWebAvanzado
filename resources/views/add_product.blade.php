@@ -2,14 +2,6 @@
 
 @section('title', 'Productos')
 
-@section('app-styles')
-    <style type="text/css">
-        .upload_file{
-            width: 18rem;
-        }
-    </style>
-@endsection
-
 @section('topbar')
     @component('layouts.navigation', [
         'login_text' => $email ? 'Cerrar sesión' : 'Iniciar sesión',
@@ -73,23 +65,24 @@
                         </select>
                     </li>
                     <li class="list-group-item">
-                        <strong>Selecciona una imagen:</strong>
+                        <strong>Selecciona una imagen:</strong><br>
                         <input
                             type="file"
-                            class="upload_file"
+                            class="upload_file btn btn-warning"
                             name="upload_file"
                             required
-                            class="btn btn-success"
                         >
                     </li>
+                    <li class="list-group-item">
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                        >
+                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                            Agregar
+                        </button>
+                    </li>                    
                 </ul>
-                <button
-                    type="submit"
-                    class="btn btn-success"
-                >
-                <i class="fa fa-plus-square" aria-hidden="true"></i>
-                    Agregar
-                </button>
             </form>
         </div>
     </div>
