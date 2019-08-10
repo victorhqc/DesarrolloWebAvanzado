@@ -1,20 +1,31 @@
-$(document).ready(function(){
-	$('.delete').on('click', function(){
-		
-		var idForm = $(this).val();
-		
-		$.confirm({
-		    title: '¿Estas seguro?',
-		    content: 'Deseas eliminar el producto!',
-		    buttons: {
-		        confirmar: function () {
-		            $("#"+idForm).submit();
-		        },
-		        cancelar: function () {
-		            return;
-		        }
-		    }
-		});
-	});
+document.addEventListener('DOMContentLoaded', function() {
+    var removeProductButtons = document.querySelectorAll('.remove-product');
 
+    removeProductButtons.forEach(function(button) {
+        button.addEventListener('click', handleRemoveProduct, false);
+    });
+
+    function handleRemoveProduct(e) {
+        e.preventDefault();
+        var button = e.target;
+
+        var productId = button.getAttribute('data-product-id');
+        if (!productId) return;
+
+        $.confirm({
+            title: 'Borrar un producto',
+            content: 'Esto no puede revertirse ¿Estás seguro?',
+            buttons: {
+                confirmar: function() {
+                    var form = document.querySelector(
+                        'form[data-form-id="' + productId + '"]'
+                    )
+                    if (!form) return;
+
+                    form.submit();
+                },
+                cancelar: function() {}
+            }
+        });
+    }
 });
