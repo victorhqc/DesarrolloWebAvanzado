@@ -27,7 +27,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Productos</h1>
+        <h1 class="mt-sm-3 mb-sm-5">Productos</h1>
         <form
             class="form-inline"
             method="get"

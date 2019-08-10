@@ -2,15 +2,6 @@
 
 @section('title', 'Productos')
 
-@section('app-styles')
-    <style type="text/css">
-        .product_card {
-            width: 18rem;
-            margin: 0 1rem;
-        }
-    </style>
-@endsection
-
 @section('topbar')
     @component('layouts.navigation', [
         'login_text' => $email ? 'Cerrar sesión' : 'Iniciar sesión',
@@ -24,41 +15,55 @@
 
 @section('content')
     <div class="container">
-        <div class="d-flex justify-content-center">
-            <form
-                method="post"
-                action="{{ action('BrandAndProductTypeController@submitProductType') }}">
-                @csrf
-                <h1>Tipo o Marca</h1>
-                <div class="card product_card">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <strong>Seleccione una opción:</strong>
-                            <select name="type" class="form-control" required>
-                                <option value="product_type">Tipo de producto</option>
-                                <option value="brand">Marca</option>
-                            </select>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Nombre:</strong>
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="name"
-                                required
-                            >
-                        </li>
-                      </ul>
-                      <button
-                        type="submit"
-                        class="btn btn-success"
-                        >
-                        <i class="fa fa-plus-square" aria-hidden="true"></i>
-                        Agregar
-                    </button>
+        <h1 class="mt-sm-3 mb-sm-5">Tipo o Marca</h1>
+        <form
+            method="post"
+            action="{{ action('BrandAndProductTypeController@submitProductType') }}">
+            @csrf
+            <div class="form-group row">
+                <label
+                    for="type"
+                    class="col-sm-3 col-form-label">
+                    Seleccione una opción
+                </label>
+                <div class="col-sm-5">
+                    <select
+                        name="type"
+                        id="type"
+                        class="form-control"
+                        required>
+                        <option></option>
+                        <option value="product_type">Tipo de producto</option>
+                        <option value="brand">Marca</option>
+                    </select>
                 </div>
-            </form>
-
-        </div>
+            </div>
+            <div class="form-group row">
+                <label
+                    for="name"
+                    class="col-sm-3 col-form-label">
+                    Nombre
+                </label>
+                <div class="col-sm-5">
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <button
+                      type="submit"
+                      class="btn btn-success pull-right">
+                      <i class="fa fa-plus-square" aria-hidden="true"></i>
+                      Agregar
+                  </button>
+                </div>
+            </div>
+        </form>
     </div>
 @endsection
