@@ -10,12 +10,12 @@ use App\Brand;
 use App\Traits\HasRoutes;
 
 
-class TypeController extends Controller {
+class BrandAndProductTypeController extends Controller {
 
     use HasRoutes;
 
     public function showAddProductType(Request $request) {
-        return view('add_type_or_brand', $this->buildHeaderData($request));
+        return view('brand_and_product_type', $this->buildHeaderData($request));
     }
 
     public function submitProductType(Request $request) {

@@ -24,9 +24,10 @@
 
 @section('content')
     <div class="container">
-
         <div class="d-flex justify-content-center">
-            <form method="post" action="{{ action('TypeController@submitProductType') }}">
+            <form
+                method="post"
+                action="{{ action('BrandAndProductTypeController@submitProductType') }}">
                 @csrf
                 <h1>Tipo o Marca</h1>
                 <div class="card product_card">

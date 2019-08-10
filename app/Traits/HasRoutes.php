@@ -27,6 +27,11 @@ trait HasRoutes {
         ],
     ];
 
+    /**
+     * Construye los datos necesarios para renderizar la barra de navegación.
+     * @param  Request $request
+     * @return Array
+     */
     public function buildHeaderData(Request $request) {
         $user = $request->user();
 
@@ -38,7 +43,12 @@ trait HasRoutes {
         ];
     }
 
-    public function buildRoutes(Request $request) {
+    /**
+     * Construye las rutas a renderizar en la barra de navegación.
+     * @param  Request $request
+     * @return Array
+     */
+    protected function buildRoutes(Request $request) {
         $currentRoute = $request->route()->getName();
 
         $parsed_routes = array_map($this->iteratePaths($currentRoute), $this->route_paths);
@@ -47,6 +57,11 @@ trait HasRoutes {
         return $filtered_routes;
     }
 
+    /**
+     * Elige la ruta activa.
+     * @param  string $currentRoute
+     * @return Array
+     */
     protected function iteratePaths(string $currentRoute) {
         return function($path) use($currentRoute) {
             if ($currentRoute == $path["path_name"]) {
@@ -57,6 +72,11 @@ trait HasRoutes {
         };
     }
 
+    /**
+     * Oculta las rutas a los usuarios que no son administradores.
+     * @param  Request $request
+     * @return Array
+     */
     protected function filterPaths(Request $request) {
         $user = $request->user();
         $isAdmin = isset($user) ? $user->is_admin() : false;
