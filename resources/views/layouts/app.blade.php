@@ -9,7 +9,7 @@
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"
-          />          
+        />
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -30,7 +30,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js" ></script>
-        <script src="/js/site.js" ></script>
+        <script src="{{ url('/') . "/js/site.js" }}"></script>
 
         @yield('app-styles')
     </head>
