@@ -70,7 +70,7 @@ class ProductsController extends Controller {
                 'products' => $this->getProducts($request),
                 'search' => $request->input('search'),
             ],
-            $this->buildHeaderData($request),
+            $this->buildHeaderData($request)
         );
     }
 
