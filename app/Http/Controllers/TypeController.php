@@ -7,13 +7,15 @@ use Illuminate\Support\Facades\URL;
 
 use App\ProductType;
 use App\Brand;
+use App\Traits\HasRoutes;
 
 
 class TypeController extends Controller {
 
+    use HasRoutes;
 
     public function showAddProductType(Request $request) {
-        return view('typeAdd');
+        return view('add_type_or_brand', $this->buildHeaderData($request));
     }
 
     public function submitProductType(Request $request) {
@@ -30,5 +32,5 @@ class TypeController extends Controller {
         return redirect(route('add_product'));
     }
 
-  
+
 }

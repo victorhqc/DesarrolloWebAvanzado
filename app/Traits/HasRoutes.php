@@ -27,6 +27,17 @@ trait HasRoutes {
         ],
     ];
 
+    public function buildHeaderData(Request $request) {
+        $user = $request->user();
+
+        return [
+            'isAdmin' => isset($user) ? $user->is_admin() : false,
+            'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
+            'email' => isset($user) ? $user->email : '',
+            'route_paths' => $this->buildRoutes($request),
+        ];
+    }
+
     public function buildRoutes(Request $request) {
         $currentRoute = $request->route()->getName();
 

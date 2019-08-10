@@ -11,6 +11,17 @@
     </style>
 @endsection
 
+@section('topbar')
+    @component('layouts.navigation', [
+        'login_text' => $email ? 'Cerrar sesión' : 'Iniciar sesión',
+        'login_url' => $email ? url("/logout") : url("/login"),
+        'email_img' => $email_img,
+        'email' => $email,
+        'route_paths' => $route_paths
+    ])
+    @endcomponent
+@endsection
+
 @section('content')
     <div class="container">
 
@@ -29,10 +40,22 @@
                             </select>
                         </li>
                         <li class="list-group-item">
-                            <strong>Nombre:</strong> <input class="form-control" type="text" name="nombre" required>
+                            <strong>Nombre:</strong>
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="nombre"
+                                required
+                            >
                         </li>
                       </ul>
-                      <button type="submit" class="btn btn-success"> <i class="fa fa-plus-square" aria-hidden="true"></i> Agregar</button>
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        >
+                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                        Agregar
+                    </button>
                 </div>
             </form>
 

@@ -83,16 +83,13 @@ class ProductsController extends Controller {
     }
 
     private function getBaseRouteParams(Request $request) {
-        $user = $request->user();
-
-        return [
-            'isAdmin' => isset($user) ? $user->is_admin() : false,
-            'products' => $this->getProducts($request),
-            'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
-            'email' => isset($user) ? $user->email : '',
-            'search' => $request->input('search'),
-            'route_paths' => $this->buildRoutes($request),
-        ];
+        return array_merge(
+            [
+                'products' => $this->getProducts($request),
+                'search' => $request->input('search'),
+            ],
+            $this->buildHeaderData($request),
+        );
     }
 
     private function getProducts(Request $request) {
