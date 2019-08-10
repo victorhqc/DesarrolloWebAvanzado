@@ -64,35 +64,14 @@ class ProductsController extends Controller {
         return redirect(route('products'));
     }
 
-    public function showAddProductType(Request $request) {
-        return view('typeAdd');
-    }
-
-    public function submitProductType(Request $request) {
-        if($_REQUEST['type']==1){
-            $ProductType = new ProductType();
-            $ProductType->id=ProductType::max('id')+1;
-        }else{
-            $ProductType = new Brand();
-            $ProductType->id=Brand::max('id')+1;
-        }
-        $ProductType->name=$_REQUEST['nombre'];
-        $ProductType->save();
-
-        return redirect(route('add_product'));
-    }
-
     private function getBaseRouteParams(Request $request) {
-        $user = $request->user();
-
-        return [
-            'isAdmin' => isset($user) ? $user->is_admin() : false,
-            'products' => $this->getProducts($request),
-            'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
-            'email' => isset($user) ? $user->email : '',
-            'search' => $request->input('search'),
-            'route_paths' => $this->buildRoutes($request),
-        ];
+        return array_merge(
+            [
+                'products' => $this->getProducts($request),
+                'search' => $request->input('search'),
+            ],
+            $this->buildHeaderData($request),
+        );
     }
 
     private function getProducts(Request $request) {

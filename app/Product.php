@@ -7,21 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Traits\UsesUuid;
 
-class Product extends Model
-{
+class Product extends Model {
     use UsesUuid;
-
-    /**
-     * La llave utilizada como primaria, no es de autoincremento, sino UUID
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * La llave primaria es de tipo string
-     * @var string
-     */
-    public $keyType = 'string';
 
     /**
      * Los atributos que se pueden asignar al crearse/editarse.

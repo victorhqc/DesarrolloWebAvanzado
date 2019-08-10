@@ -15,12 +15,15 @@ $router->get('add_product', 'ProductsController@showAddProduct')->name('add_prod
 $router->post('submit_product', 'ProductsController@submitProduct');
 
 // Al tratarse de un request por un formulario debe usarse únicamente GET o POST.
-// Una aplicación de tipo REST debería utilizar el método DELETE.
+// Una aplicación de tipo REST debería utilizar el método DELETE. Nosotros utilizamos el método
+// POST para que al menos el usuario no pueda borrar un usuario accidentalmente al navegar a la
+// ruta manualmente.
 $router->post('remove_product', 'ProductsController@removeProduct');
 
-// TODO: Mover a su propio controlador.
-$router->get('add_product_type', 'TypeController@showAddProductType')->name('add_product_type');
-$router->post('submit_product_type', 'TypeController@submitProductType');
+$router
+    ->get('add_product_type', 'BrandAndProductTypeController@showAddProductType')
+    ->name('add_product_type');
+$router->post('submit_product_type', 'BrandAndProductTypeController@submitProductType');
 
 /*
 |--------------------------------------------------------------------------
