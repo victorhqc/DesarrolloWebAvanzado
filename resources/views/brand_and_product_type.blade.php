@@ -35,9 +35,8 @@
                         <li class="list-group-item">
                             <strong>Seleccione una opción:</strong>
                             <select name="type" class="form-control" required>
-                                <option value=""></option>
-                                <option value="1">Tipo</option>
-                                <option value="2">Marca</option>
+                                <option value="product_type">Tipo de producto</option>
+                                <option value="brand">Marca</option>
                             </select>
                         </li>
                         <li class="list-group-item">
@@ -45,7 +44,7 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                name="nombre"
+                                name="name"
                                 required
                             >
                         </li>

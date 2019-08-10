@@ -4,19 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductType extends Model
-{
-    /**
-     * La llave utilizada como primaria, no es de autoincremento, sino UUID
-     * @var bool
-     */
-    public $incrementing = false;
+use App\Traits\UsesUuid;
+
+class ProductType extends Model {
+    use UsesUuid;
 
     /**
-     * La llave primaria es de tipo string
-     * @var string
+     * Los atributos que se pueden asignar al crearse/editarse.
+     *
+     * @var array
      */
-    public $keyType = 'string';
+    protected $fillable = ['name'];
 
     /**
      * Un tipo de producto tiene muchos productos.

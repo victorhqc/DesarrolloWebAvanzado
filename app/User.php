@@ -8,8 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Traits\UsesUuid;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use Notifiable;
     use UsesUuid;
 

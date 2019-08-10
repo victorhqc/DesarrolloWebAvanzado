@@ -19,18 +19,27 @@ class BrandAndProductTypeController extends Controller {
     }
 
     public function submitProductType(Request $request) {
-        if($_REQUEST['type']==1){
-            $ProductType = new ProductType();
-            $ProductType->id=ProductType::max('id')+1;
-        }else{
-            $ProductType = new Brand();
-            $ProductType->id=Brand::max('id')+1;
+        $name = $request->input('name');
+
+        switch ($request->input('type')) {
+            case 'product_type':
+                $this->addProductType($name);
+            case 'brand':
+                $this->addBrand($name);
         }
-        $ProductType->name=$_REQUEST['nombre'];
-        $ProductType->save();
 
         return redirect(route('add_product'));
     }
 
+    protected function addProductType($name) {
+        ProductType::firstOrCreate([
+            'name' => $name,
+        ]);
+    }
 
+    protected function addBrand($name) {
+        Brand::firstOrCreate([
+            'name' => $name,
+        ]);
+    }
 }
