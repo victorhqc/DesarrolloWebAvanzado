@@ -6,7 +6,7 @@
                 <li class="nav-item">
                     <a
                         class="nav-link {{ $path['is_active'] ? 'active' : '' }}"
-                        href="{{ $path['path_name'] }}">
+                        href="{{ url($path['path_name']) }}">
                         {{ $path['name'] }}
                     </a>
                 </li>

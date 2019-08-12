@@ -15,6 +15,9 @@ $router
 $router
     ->get('products', 'ProductsController@showProducts')
     ->name('products');
+$router
+    ->get('product/{id}', 'ProductsController@showProduct')
+    ->name('product');
 
 $router
     ->get('add_product', 'ProductsController@showAddProduct')
