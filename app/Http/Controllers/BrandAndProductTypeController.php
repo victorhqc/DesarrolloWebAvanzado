@@ -24,8 +24,10 @@ class BrandAndProductTypeController extends Controller {
         switch ($request->input('type')) {
             case 'product_type':
                 $this->addProductType($name);
+                break;
             case 'brand':
                 $this->addBrand($name);
+                break;
         }
 
         return redirect(route('add_product'));
