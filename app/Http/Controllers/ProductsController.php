@@ -22,6 +22,21 @@ class ProductsController extends Controller {
         return view('products', $this->getBaseRouteParams($request));
     }
 
+    public function showProduct(Request $request) {
+
+        $product = Product::where('id', $request->route('id'))->first();
+        if (!$product) {
+            return abort(404);
+        }
+
+        return view('product_page', array_merge(
+            $this->getBaseRouteParams($request),
+            [
+                'product' => $product
+            ]
+        ));
+    }
+
     public function showAddProduct(Request $request) {
         $productsTypes = ProductType::all();
         $brands = Brand::all();
