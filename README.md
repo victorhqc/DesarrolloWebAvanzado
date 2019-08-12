@@ -36,6 +36,9 @@ composer global require laravel/installer
 # Añadiendo los binarios descargados por composer a $PATH
 echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
 source ~/.bashrc
+
+# Instalando dependencias
+composer install
 ```
 
 ### Apache
