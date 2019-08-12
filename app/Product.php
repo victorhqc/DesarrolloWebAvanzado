@@ -26,11 +26,19 @@ class Product extends Model {
         return $this->belongsTo('App\Brand');
     }
 
+    public function brandName() {
+        return $this->brand()->first()->name;
+    }
+
     /**
      * Un producto pertenece a un tipo.
      */
     public function productType() {
-        return $this->gelongsTo('App\ProductType');
+        return $this->belongsTo('App\ProductType');
+    }
+
+    public function productTypeName() {
+        return $this->productType()->first()->name;
     }
 
     /**
