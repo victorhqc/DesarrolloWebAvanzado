@@ -8,6 +8,7 @@
         'login_url' => $email ? url("/logout") : url("/login"),
         'email_img' => $email_img,
         'email' => $email,
+        'name' => $name,
         'route_paths' => $route_paths
     ])
     @endcomponent

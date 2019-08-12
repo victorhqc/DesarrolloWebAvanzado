@@ -39,6 +39,7 @@ trait HasRoutes {
             'isAdmin' => isset($user) ? $user->is_admin() : false,
             'email_img' =>  isset($user) ? $user->email_gravatar_url(30) : '',
             'email' => isset($user) ? $user->email : '',
+            'name' =>  isset($user) ? $user->name() : '',
             'route_paths' => $this->buildRoutes($request),
         ];
     }

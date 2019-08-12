@@ -29,6 +29,7 @@
     </div>
     <div>
         <span class="navbar-text mr-3">
+            {{ (!empty($name) ? 'Bienvenido: '.$name : '') }}
             <img src="{{ $email_img }}" alt="{{ $email }}" title="{{ $email }}" />
         </span>
         <span class="navbar-text">
