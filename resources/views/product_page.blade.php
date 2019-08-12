@@ -32,7 +32,15 @@
             class="background-img"
             style="background-image: url({{ $product->img_src }});">
         </div>
-        <h1 class="mt-sm-3 mb-sm-5">{{ $product->name }}</h1>
+        <h1 class="mt-sm-3 mb-sm-5">
+            {{ $product->name }}
+            <br />
+            <small>{{ $product->brandName() }}</small>
+        </h1>
+        <p>
+            <i class="fa fa-tag" aria-hidden="true"></i>
+            {{ $product->productTypeName() }}
+        </p>
         <p class="lead">{{ $product->description }}</p>
     </div>
 @endsection
